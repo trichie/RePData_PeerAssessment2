@@ -1,0 +1,147 @@
+# Resources used for protecting against severe weather events in the US could have the biggest impact if used for tornado, wind and flood protection
+
+## Synopsis
+Storms and other severe weather events can be an economical threat by causing massive property damage, but also to public health by causing fatalities and injuries. Preventing such outcomes to the extent possible is a key concern, but as available resources are limited, their assginment to prevention measures needs to be prioritized.
+
+Exploring the U.S. National Oceanic and Atmospheric Administration's (NOAA) storm database, this report shows which types of weather events were the most harmful in the time period between 1950 and 2013 both economically and for public health.
+
+Therefore, the data is grouped into 12 categories of events, for which property damage, crop damage, fatalities and injuries during that time span are compared. An analysis of the data shows that tornadoes and comparable events have the most severe impact with respect to population health, whereas floods and wind in general have the strongest economic impact.
+## Data processing
+The input data is read directly from the bzipped data file as provided by NOAA.
+```{r readData, cache = TRUE}
+data <- read.csv(bzfile("repdata-data-StormData.csv.bz2"),header=TRUE)
+```
+For computational and memory reasons, only those columns that are required for the analysis are extracted:
+* EVTYPE: Type of event
+* BGN_DATE: Date when event began, dropped after YEAR is determined
+* STATE: State where event took place
+* FATALITIES: Number of fatalities caused by events
+* INJURIES: Number of injuries caused by events
+* PROPDMG and PROPDMGEXP: Property damage caused by events, dropped after propDam is calculated from these
+* CROPDMG and CROPDMGEXP: Crop damage caused by events, dropped after cropDam is calculated from these
+Additional Columns are created:
+* YEAR: year of events, deducted from BGN_DATE
+* DAMAGE: Damage caused by events, deducted from PROPDMG and PROPDMGEXP
+```{r reduceDataColumns}
+reducedData <- data[,c("EVTYPE","BGN_DATE","STATE","FATALITIES","INJURIES","PROPDMG","PROPDMGEXP","CROPDMG","CROPDMGEXP")]
+```
+Both PROPDMGEXP and CROPDMGEXP are decoded into the following factors which are then multiplied by PROPDMG and CROPDMG:
+* Letters are transformed to lowercase and interpreted as factors: b(illions = 10^9), m(illions = 10^6), k(ilos = 10^3) and h(undreds = 10^2)
+* Numbers are used directly as factors, e.g. 5 = 10^5
+* Other symbols are interpreted as factor 10^0 = 1
+
+```{r calculateFields}
+reducedData$PROPDMGEXP <- tolower(reducedData$PROPDMGEXP)
+table(reducedData$PROPDMGEXP)
+reducedData$propDam <- reducedData$PROPDMG * ifelse(reducedData$PROPDMGEXP=="b",10^9,
+                                             ifelse(reducedData$PROPDMGEXP=="m",10^6,
+                                             ifelse(reducedData$PROPDMGEXP=="k",10^3,
+                                             ifelse(reducedData$PROPDMGEXP=="h",10^2,
+                                             ifelse(is.numeric(reducedData$PROPDMGEXP),10^reducedData$PROPDMGEXP,1)))))
+
+reducedData$CROPDMGEXP <- tolower(reducedData$CROPDMGEXP)
+table(reducedData$CROPDMGEXP)
+reducedData$cropDam <- reducedData$CROPDMG * ifelse(reducedData$CROPDMGEXP=="b",10^9,
+                                             ifelse(reducedData$CROPDMGEXP=="m",10^6,
+                                             ifelse(reducedData$CROPDMGEXP=="k",10^3,
+                                             ifelse(reducedData$CROPDMGEXP=="h",10^2,
+                                             ifelse(is.numeric(reducedData$CROPDMGEXP),10^reducedData$PROPDMGEXP,1)))))    
+reducedData$PROPDMG <- NULL
+reducedData$PROPDMGEXP <- NULL
+reducedData$CROPDMG <- NULL
+reducedData$CROPDMGEXP <- NULL
+```
+Fields for the year of event (not directly used in this analysis, however) and an event count are created:
+```{r}
+reducedData$year <- 1900+strptime(reducedData$BGN_DATE,"%m/%d/%Y %H:%M:%S")$year
+reducedData$BGN_DATE <- NULL
+reducedData$count <- 1
+```
+After transforming all event types to lowercase, there are roughly 900 distinct types of events listed
+```{r viewEvents}
+reducedData$EVTYPE <- as.factor(tolower(reducedData$EVTYPE))
+levels(droplevels(reducedData$EVTYPE))
+```
+Out of these, all events described as summaries are removed
+```{r removeSummaries}
+reducedData <- reducedData[!grepl("summa", reducedData$EVTYPE, ignore.case=TRUE),]
+```
+The remaining events are assigned to broader categories
+
+* Tornadoes, also containing gustnados, funnel clouds, water spouts and dust devils
+* Blizzards, also containing winter storms and ice storms
+* Cold related events such as snow, ice, general winter events, frost, etc.
+* Hail
+* Rain
+* Wind, including storms and hurricanes
+* Floods
+* Marine, containing rip currents, tides and tsunamis
+* Lightning
+* Heat related events, including Fires
+* Dryness
+* Other events  
+
+This categorization is constructed as disjunct, i.e. any event is assigned to exactly one of these categories in the above order. The assignment is performed by searching key strings in the EVTYPE variable. After this grouping, only a small proportion of the original data could not be assigned to any of the categories, which means that it was by definition assigned to category Other. The following tables show which event was assigned to which category, also covering most of the misspelled events.
+```{r eventCategories}
+reducedData$evCat <- NA
+reducedData$evCat[grepl("torna|tornda|gustna|funnel|spout|dust dev", reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Tornado"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Tornado"]))
+reducedData$evCat[grepl("blitz|bliz|winter sto|ice sto",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Blizzard"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Blizzard"]))
+reducedData$evCat[grepl("snow|ice|icy|freez|wint|cold|cool|frost|chill|hypotherm",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Cold"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Cold"]))
+reducedData$evCat[grepl("hail",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Hail"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Hail"]))
+reducedData$evCat[grepl("rain",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Rain"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Rain"]))
+reducedData$evCat[grepl("wind|wnd|storm|hurr",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Wind"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Wind"]))
+reducedData$evCat[grepl("flood|stream fld|high wat|floood",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Flood"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Flood"]))
+reducedData$evCat[grepl("marin|tide|rip cur|tsunami|surf|sea|beach|coast",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Marine"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Marine"]))
+reducedData$evCat[grepl("lightn|lighti|lign",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Lightning"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Lightning"]))
+reducedData$evCat[grepl("warm|hot|heat|fire|hypertherm|high temp",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Heat"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Heat"]))
+reducedData$evCat[grepl("dry|drought|driest",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Dry"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Dry"]))
+reducedData$evCat[is.na(reducedData$evCat)] <- "Other"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Other"]))
+head(reducedData)
+```
+In order to be analysed further, the data is aggregated by event category, delivering the subsequent table:
+```{r aggregateData}
+aggregatedData <- aggregate(with(reducedData,list(count,FATALITIES,INJURIES,propDam,cropDam)),with(reducedData,list(evCat)),sum)
+colnames(aggregatedData) <- colnames(reducedData)[c(9,8,3:6)]
+aggregatedData
+```
+## Results
+From the table above and the following graphs, it can be seen that
+* the vast majority of recorded events are in the categories for wind (~360k) and hail (~290k) categories
+* the most devastating categories with respect to property damages are floods (~167 bn USD) and wind (~157 bn USD)
+* the most devastating categories with respect to crop damages are dryness (~14 bn) and floods (~12 bn)
+* the most devastating category with respect to both fatalities and injuries is tornadoes (~5600 dead, ~90000 injured)
+```{r plotResults}
+library(ggplot2)
+library(gridExtra)
+library(scales)
+plotEvt <- ggplot(aggregatedData, aes(x=evCat, y=count,fill=evCat)) + geom_bar(stat="identity") + theme_bw() + guides(fill=FALSE) + labs(title="Recorded Events between 1950 and 2011", x = "Event category", y = "Events in 1'000s") + theme(axis.text.x=element_text(angle=0)) + coord_flip() + scale_y_continuous(labels=function(x) {x/10^3})
+plotEvt
+
+plotPropDam <- ggplot(aggregatedData, aes(x=evCat, y=propDam,fill=evCat)) + geom_bar(stat="identity") + theme_bw() + guides(fill=FALSE) + labs(title="Property damage in bn USD", x = "Event category", y = "") + theme(axis.text.x=element_text(angle=0)) + coord_flip() + scale_y_continuous(labels=function(x) {x/10^9})
+plotCropDam <- ggplot(aggregatedData, aes(x=evCat, y=cropDam,fill=evCat)) + geom_bar(stat="identity") + theme_bw() + guides(fill=FALSE) + labs(title="Crop damage in bn USD", x = "Event category", y = "") + theme(axis.text.x=element_text(angle=0)) + coord_flip() + scale_y_continuous(labels=function(x) {x/10^9})
+
+plotFat <- ggplot(aggregatedData, aes(x=evCat, y=FATALITIES,fill=evCat)) + geom_bar(stat="identity") + theme_bw() + guides(fill=FALSE) + labs(title="Fatalities", x = "Event category", y = "") + theme(axis.text.x=element_text(angle=0)) + coord_flip()
+plotInj <- ggplot(aggregatedData, aes(x=evCat, y=INJURIES,fill=evCat)) + geom_bar(stat="identity") + theme_bw() + guides(fill=FALSE) + labs(title="Injuries", x = "Event category", y = "") + theme(axis.text.x=element_text(angle=0)) + coord_flip()
+grid.arrange(plotPropDam,plotCropDam,plotFat,plotInj,ncol=2,nrow=2)
+```
+## Used external resources
+* Storm data used for analysis: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2
+
+
+
+
+
+
+

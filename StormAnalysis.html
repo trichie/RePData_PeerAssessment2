@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Resources used for protecting against severe weather events in the US could have the biggest impact if used for tornado, wind and flood protection</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>Resources used for protecting against severe weather events in the US could have the biggest impact if used for tornado, wind and flood protection</h1>
+
+<h2>Synopsis</h2>
+
+<p>Storms and other severe weather events can be an economical threat by causing massive property damage, but also to public health by causing fatalities and injuries. Preventing such outcomes to the extent possible is a key concern, but as available resources are limited, their assginment to prevention measures needs to be prioritized.</p>
+
+<p>Exploring the U.S. National Oceanic and Atmospheric Administration&#39;s (NOAA) storm database, this report shows which types of weather events were the most harmful in the time period between 1950 and 2013 both economically and for public health.</p>
+
+<p>Therefore, the data is grouped into 12 categories of events, for which property damage, crop damage, fatalities and injuries during that time span are compared. An analysis of the data shows that tornadoes and comparable events have the most severe impact with respect to population health, whereas floods and wind in general have the strongest economic impact.</p>
+
+<h2>Data processing</h2>
+
+<p>The input data is read directly from the bzipped data file as provided by NOAA.</p>
+
+<pre><code class="r">data &lt;- read.csv(bzfile(&quot;repdata-data-StormData.csv.bz2&quot;), header = TRUE)
+</code></pre>
+
+<p>For computational and memory reasons, only those columns that are required for the analysis are extracted:</p>
+
+<ul>
+<li>EVTYPE: Type of event</li>
+<li>BGN_DATE: Date when event began, dropped after YEAR is determined</li>
+<li>STATE: State where event took place</li>
+<li>FATALITIES: Number of fatalities caused by events</li>
+<li>INJURIES: Number of injuries caused by events</li>
+<li>PROPDMG and PROPDMGEXP: Property damage caused by events, dropped after propDam is calculated from these</li>
+<li>CROPDMG and CROPDMGEXP: Crop damage caused by events, dropped after cropDam is calculated from these
+Additional Columns are created:</li>
+<li>YEAR: year of events, deducted from BGN_DATE</li>
+<li>DAMAGE: Damage caused by events, deducted from PROPDMG and PROPDMGEXP</li>
+</ul>
+
+<pre><code class="r">reducedData &lt;- data[, c(&quot;EVTYPE&quot;, &quot;BGN_DATE&quot;, &quot;STATE&quot;, &quot;FATALITIES&quot;, &quot;INJURIES&quot;, 
+    &quot;PROPDMG&quot;, &quot;PROPDMGEXP&quot;, &quot;CROPDMG&quot;, &quot;CROPDMGEXP&quot;)]
+</code></pre>
+
+<p>Both PROPDMGEXP and CROPDMGEXP are decoded into the following factors which are then multiplied by PROPDMG and CROPDMG:</p>
+
+<ul>
+<li>Letters are transformed to lowercase and interpreted as factors: b(illions = 10<sup>9),</sup> m(illions = 10<sup>6),</sup> k(ilos = 10<sup>3)</sup> and h(undreds = 10<sup>2)</sup></li>
+<li>Numbers are used directly as factors, e.g. 5 = 10<sup>5</sup></li>
+<li>Other symbols are interpreted as factor 10<sup>0</sup> = 1</li>
+</ul>
+
+<pre><code class="r">reducedData$PROPDMGEXP &lt;- tolower(reducedData$PROPDMGEXP)
+table(reducedData$PROPDMGEXP)
+</code></pre>
+
+<pre><code>## 
+##             -      ?      +      0      1      2      3      4      5 
+## 465934      1      8      5    216     25     13      4      4     28 
+##      6      7      8      b      h      k      m 
+##      4      5      1     40      7 424665  11337
+</code></pre>
+
+<pre><code class="r">reducedData$propDam &lt;- reducedData$PROPDMG * ifelse(reducedData$PROPDMGEXP == 
+    &quot;b&quot;, 10^9, ifelse(reducedData$PROPDMGEXP == &quot;m&quot;, 10^6, ifelse(reducedData$PROPDMGEXP == 
+    &quot;k&quot;, 10^3, ifelse(reducedData$PROPDMGEXP == &quot;h&quot;, 10^2, ifelse(is.numeric(reducedData$PROPDMGEXP), 
+    10^reducedData$PROPDMGEXP, 1)))))
+
+reducedData$CROPDMGEXP &lt;- tolower(reducedData$CROPDMGEXP)
+table(reducedData$CROPDMGEXP)
+</code></pre>
+
+<pre><code>## 
+##             ?      0      2      b      k      m 
+## 618413      7     19      1      9 281853   1995
+</code></pre>
+
+<pre><code class="r">reducedData$cropDam &lt;- reducedData$CROPDMG * ifelse(reducedData$CROPDMGEXP == 
+    &quot;b&quot;, 10^9, ifelse(reducedData$CROPDMGEXP == &quot;m&quot;, 10^6, ifelse(reducedData$CROPDMGEXP == 
+    &quot;k&quot;, 10^3, ifelse(reducedData$CROPDMGEXP == &quot;h&quot;, 10^2, ifelse(is.numeric(reducedData$CROPDMGEXP), 
+    10^reducedData$PROPDMGEXP, 1)))))
+reducedData$PROPDMG &lt;- NULL
+reducedData$PROPDMGEXP &lt;- NULL
+reducedData$CROPDMG &lt;- NULL
+reducedData$CROPDMGEXP &lt;- NULL
+</code></pre>
+
+<p>Fields for the year of event (not directly used in this analysis, however) and an event count are created:</p>
+
+<pre><code class="r">reducedData$year &lt;- 1900 + strptime(reducedData$BGN_DATE, &quot;%m/%d/%Y %H:%M:%S&quot;)$year
+reducedData$BGN_DATE &lt;- NULL
+reducedData$count &lt;- 1
+</code></pre>
+
+<p>After transforming all event types to lowercase, there are roughly 900 distinct types of events listed</p>
+
+<pre><code class="r">reducedData$EVTYPE &lt;- as.factor(tolower(reducedData$EVTYPE))
+levels(droplevels(reducedData$EVTYPE))
+</code></pre>
+
+<pre><code>##   [1] &quot;   high surf advisory&quot;          &quot; coastal flood&quot;                
+##   [3] &quot; flash flood&quot;                   &quot; lightning&quot;                    
+##   [5] &quot; tstm wind&quot;                     &quot; tstm wind (g45)&quot;              
+##   [7] &quot; waterspout&quot;                    &quot; wind&quot;                         
+##   [9] &quot;?&quot;                              &quot;abnormal warmth&quot;               
+##  [11] &quot;abnormally dry&quot;                 &quot;abnormally wet&quot;                
+##  [13] &quot;accumulated snowfall&quot;           &quot;agricultural freeze&quot;           
+##  [15] &quot;apache county&quot;                  &quot;astronomical high tide&quot;        
+##  [17] &quot;astronomical low tide&quot;          &quot;avalance&quot;                      
+##  [19] &quot;avalanche&quot;                      &quot;beach erosin&quot;                  
+##  [21] &quot;beach erosion&quot;                  &quot;beach erosion/coastal flood&quot;   
+##  [23] &quot;beach flood&quot;                    &quot;below normal precipitation&quot;    
+##  [25] &quot;bitter wind chill&quot;              &quot;bitter wind chill temperatures&quot;
+##  [27] &quot;black ice&quot;                      &quot;blizzard&quot;                      
+##  [29] &quot;blizzard and extreme wind chil&quot; &quot;blizzard and heavy snow&quot;       
+##  [31] &quot;blizzard summary&quot;               &quot;blizzard weather&quot;              
+##  [33] &quot;blizzard/freezing rain&quot;         &quot;blizzard/heavy snow&quot;           
+##  [35] &quot;blizzard/high wind&quot;             &quot;blizzard/winter storm&quot;         
+##  [37] &quot;blow-out tide&quot;                  &quot;blow-out tides&quot;                
+##  [39] &quot;blowing dust&quot;                   &quot;blowing snow&quot;                  
+##  [41] &quot;blowing snow- extreme wind chi&quot; &quot;blowing snow &amp; extreme wind ch&quot;
+##  [43] &quot;blowing snow/extreme wind chil&quot; &quot;breakup flooding&quot;              
+##  [45] &quot;brush fire&quot;                     &quot;brush fires&quot;                   
+##  [47] &quot;coastal  flooding/erosion&quot;      &quot;coastal erosion&quot;               
+##  [49] &quot;coastal flood&quot;                  &quot;coastal flooding&quot;              
+##  [51] &quot;coastal flooding/erosion&quot;       &quot;coastal storm&quot;                 
+##  [53] &quot;coastal surge&quot;                  &quot;coastal/tidal flood&quot;           
+##  [55] &quot;coastalflood&quot;                   &quot;coastalstorm&quot;                  
+##  [57] &quot;cold&quot;                           &quot;cold air funnel&quot;               
+##  [59] &quot;cold air funnels&quot;               &quot;cold air tornado&quot;              
+##  [61] &quot;cold and frost&quot;                 &quot;cold and snow&quot;                 
+##  [63] &quot;cold and wet conditions&quot;        &quot;cold temperature&quot;              
+##  [65] &quot;cold temperatures&quot;              &quot;cold wave&quot;                     
+##  [67] &quot;cold weather&quot;                   &quot;cold wind chill temperatures&quot;  
+##  [69] &quot;cold/wind chill&quot;                &quot;cold/winds&quot;                    
+##  [71] &quot;cool and wet&quot;                   &quot;cool spell&quot;                    
+##  [73] &quot;cstl flooding/erosion&quot;          &quot;dam break&quot;                     
+##  [75] &quot;dam failure&quot;                    &quot;damaging freeze&quot;               
+##  [77] &quot;deep hail&quot;                      &quot;dense fog&quot;                     
+##  [79] &quot;dense smoke&quot;                    &quot;downburst&quot;                     
+##  [81] &quot;downburst winds&quot;                &quot;driest month&quot;                  
+##  [83] &quot;drifting snow&quot;                  &quot;drought&quot;                       
+##  [85] &quot;drought/excessive heat&quot;         &quot;drowning&quot;                      
+##  [87] &quot;dry&quot;                            &quot;dry conditions&quot;                
+##  [89] &quot;dry hot weather&quot;                &quot;dry microburst&quot;                
+##  [91] &quot;dry microburst 50&quot;              &quot;dry microburst 53&quot;             
+##  [93] &quot;dry microburst 58&quot;              &quot;dry microburst 61&quot;             
+##  [95] &quot;dry microburst 84&quot;              &quot;dry microburst winds&quot;          
+##  [97] &quot;dry mircoburst winds&quot;           &quot;dry pattern&quot;                   
+##  [99] &quot;dry spell&quot;                      &quot;dry weather&quot;                   
+## [101] &quot;dryness&quot;                        &quot;dust devel&quot;                    
+## [103] &quot;dust devil&quot;                     &quot;dust devil waterspout&quot;         
+## [105] &quot;dust storm&quot;                     &quot;dust storm/high winds&quot;         
+## [107] &quot;duststorm&quot;                      &quot;early freeze&quot;                  
+## [109] &quot;early frost&quot;                    &quot;early rain&quot;                    
+## [111] &quot;early snow&quot;                     &quot;early snowfall&quot;                
+## [113] &quot;erosion/cstl flood&quot;             &quot;excessive&quot;                     
+## [115] &quot;excessive cold&quot;                 &quot;excessive heat&quot;                
+## [117] &quot;excessive heat/drought&quot;         &quot;excessive precipitation&quot;       
+## [119] &quot;excessive rain&quot;                 &quot;excessive rainfall&quot;            
+## [121] &quot;excessive snow&quot;                 &quot;excessive wetness&quot;             
+## [123] &quot;excessively dry&quot;                &quot;extended cold&quot;                 
+## [125] &quot;extreme cold&quot;                   &quot;extreme cold/wind chill&quot;       
+## [127] &quot;extreme heat&quot;                   &quot;extreme wind chill&quot;            
+## [129] &quot;extreme wind chill/blowing sno&quot; &quot;extreme wind chills&quot;           
+## [131] &quot;extreme windchill&quot;              &quot;extreme windchill temperatures&quot;
+## [133] &quot;extreme/record cold&quot;            &quot;extremely wet&quot;                 
+## [135] &quot;falling snow/ice&quot;               &quot;first frost&quot;                   
+## [137] &quot;first snow&quot;                     &quot;flash flood&quot;                   
+## [139] &quot;flash flood - heavy rain&quot;       &quot;flash flood from ice jams&quot;     
+## [141] &quot;flash flood landslides&quot;         &quot;flash flood winds&quot;             
+## [143] &quot;flash flood/&quot;                   &quot;flash flood/ flood&quot;            
+## [145] &quot;flash flood/ street&quot;            &quot;flash flood/flood&quot;             
+## [147] &quot;flash flood/heavy rain&quot;         &quot;flash flood/landslide&quot;         
+## [149] &quot;flash flooding&quot;                 &quot;flash flooding/flood&quot;          
+## [151] &quot;flash flooding/thunderstorm wi&quot; &quot;flash floods&quot;                  
+## [153] &quot;flash floooding&quot;                &quot;flood&quot;                         
+## [155] &quot;flood &amp; heavy rain&quot;             &quot;flood flash&quot;                   
+## [157] &quot;flood flood/flash&quot;              &quot;flood watch/&quot;                  
+## [159] &quot;flood/flash&quot;                    &quot;flood/flash flood&quot;             
+## [161] &quot;flood/flash flooding&quot;           &quot;flood/flash/flood&quot;             
+## [163] &quot;flood/flashflood&quot;               &quot;flood/rain/wind&quot;               
+## [165] &quot;flood/rain/winds&quot;               &quot;flood/river flood&quot;             
+## [167] &quot;flood/strong wind&quot;              &quot;flooding&quot;                      
+## [169] &quot;flooding/heavy rain&quot;            &quot;floods&quot;                        
+## [171] &quot;fog&quot;                            &quot;fog and cold temperatures&quot;     
+## [173] &quot;forest fires&quot;                   &quot;freeze&quot;                        
+## [175] &quot;freezing drizzle&quot;               &quot;freezing drizzle and freezing&quot; 
+## [177] &quot;freezing fog&quot;                   &quot;freezing rain&quot;                 
+## [179] &quot;freezing rain and sleet&quot;        &quot;freezing rain and snow&quot;        
+## [181] &quot;freezing rain sleet and&quot;        &quot;freezing rain sleet and light&quot; 
+## [183] &quot;freezing rain/sleet&quot;            &quot;freezing rain/snow&quot;            
+## [185] &quot;freezing spray&quot;                 &quot;frost&quot;                         
+## [187] &quot;frost/freeze&quot;                   &quot;frost\\freeze&quot;                 
+## [189] &quot;funnel&quot;                         &quot;funnel cloud&quot;                  
+## [191] &quot;funnel cloud.&quot;                  &quot;funnel cloud/hail&quot;             
+## [193] &quot;funnel clouds&quot;                  &quot;funnels&quot;                       
+## [195] &quot;glaze&quot;                          &quot;glaze ice&quot;                     
+## [197] &quot;glaze/ice storm&quot;                &quot;gradient wind&quot;                 
+## [199] &quot;gradient winds&quot;                 &quot;grass fires&quot;                   
+## [201] &quot;ground blizzard&quot;                &quot;gustnado&quot;                      
+## [203] &quot;gustnado and&quot;                   &quot;gusty lake wind&quot;               
+## [205] &quot;gusty thunderstorm wind&quot;        &quot;gusty thunderstorm winds&quot;      
+## [207] &quot;gusty wind&quot;                     &quot;gusty wind/hail&quot;               
+## [209] &quot;gusty wind/hvy rain&quot;            &quot;gusty wind/rain&quot;               
+## [211] &quot;gusty winds&quot;                    &quot;hail&quot;                          
+## [213] &quot;hail 0.75&quot;                      &quot;hail 0.88&quot;                     
+## [215] &quot;hail 075&quot;                       &quot;hail 088&quot;                      
+## [217] &quot;hail 1.00&quot;                      &quot;hail 1.75&quot;                     
+## [219] &quot;hail 1.75)&quot;                     &quot;hail 100&quot;                      
+## [221] &quot;hail 125&quot;                       &quot;hail 150&quot;                      
+## [223] &quot;hail 175&quot;                       &quot;hail 200&quot;                      
+## [225] &quot;hail 225&quot;                       &quot;hail 275&quot;                      
+## [227] &quot;hail 450&quot;                       &quot;hail 75&quot;                       
+## [229] &quot;hail 80&quot;                        &quot;hail 88&quot;                       
+## [231] &quot;hail aloft&quot;                     &quot;hail damage&quot;                   
+## [233] &quot;hail flooding&quot;                  &quot;hail storm&quot;                    
+## [235] &quot;hail(0.75)&quot;                     &quot;hail/icy roads&quot;                
+## [237] &quot;hail/wind&quot;                      &quot;hail/winds&quot;                    
+## [239] &quot;hailstorm&quot;                      &quot;hailstorms&quot;                    
+## [241] &quot;hard freeze&quot;                    &quot;hazardous surf&quot;                
+## [243] &quot;heat&quot;                           &quot;heat drought&quot;                  
+## [245] &quot;heat wave&quot;                      &quot;heat wave drought&quot;             
+## [247] &quot;heat waves&quot;                     &quot;heat/drought&quot;                  
+## [249] &quot;heatburst&quot;                      &quot;heavy lake snow&quot;               
+## [251] &quot;heavy mix&quot;                      &quot;heavy precipatation&quot;           
+## [253] &quot;heavy precipitation&quot;            &quot;heavy rain&quot;                    
+## [255] &quot;heavy rain and flood&quot;           &quot;heavy rain and wind&quot;           
+## [257] &quot;heavy rain effects&quot;             &quot;heavy rain/flooding&quot;           
+## [259] &quot;heavy rain/high surf&quot;           &quot;heavy rain/lightning&quot;          
+## [261] &quot;heavy rain/mudslides/flood&quot;     &quot;heavy rain/severe weather&quot;     
+## [263] &quot;heavy rain/small stream urban&quot;  &quot;heavy rain/snow&quot;               
+## [265] &quot;heavy rain/urban flood&quot;         &quot;heavy rain/wind&quot;               
+## [267] &quot;heavy rain; urban flood winds;&quot; &quot;heavy rainfall&quot;                
+## [269] &quot;heavy rains&quot;                    &quot;heavy rains/flooding&quot;          
+## [271] &quot;heavy seas&quot;                     &quot;heavy shower&quot;                  
+## [273] &quot;heavy showers&quot;                  &quot;heavy snow&quot;                    
+## [275] &quot;heavy snow-squalls&quot;             &quot;heavy snow   freezing rain&quot;    
+## [277] &quot;heavy snow &amp; ice&quot;               &quot;heavy snow and&quot;                
+## [279] &quot;heavy snow and high winds&quot;      &quot;heavy snow and ice&quot;            
+## [281] &quot;heavy snow and ice storm&quot;       &quot;heavy snow and strong winds&quot;   
+## [283] &quot;heavy snow andblowing snow&quot;     &quot;heavy snow shower&quot;             
+## [285] &quot;heavy snow squalls&quot;             &quot;heavy snow/blizzard&quot;           
+## [287] &quot;heavy snow/blizzard/avalanche&quot;  &quot;heavy snow/blowing snow&quot;       
+## [289] &quot;heavy snow/freezing rain&quot;       &quot;heavy snow/high&quot;               
+## [291] &quot;heavy snow/high wind&quot;           &quot;heavy snow/high winds&quot;         
+## [293] &quot;heavy snow/high winds &amp; flood&quot;  &quot;heavy snow/high winds/freezing&quot;
+## [295] &quot;heavy snow/ice&quot;                 &quot;heavy snow/ice storm&quot;          
+## [297] &quot;heavy snow/sleet&quot;               &quot;heavy snow/squalls&quot;            
+## [299] &quot;heavy snow/wind&quot;                &quot;heavy snow/winter storm&quot;       
+## [301] &quot;heavy snowpack&quot;                 &quot;heavy surf&quot;                    
+## [303] &quot;heavy surf and wind&quot;            &quot;heavy surf coastal flooding&quot;   
+## [305] &quot;heavy surf/high surf&quot;           &quot;heavy swells&quot;                  
+## [307] &quot;heavy wet snow&quot;                 &quot;high&quot;                          
+## [309] &quot;high  swells&quot;                   &quot;high  winds&quot;                   
+## [311] &quot;high seas&quot;                      &quot;high surf&quot;                     
+## [313] &quot;high surf advisories&quot;           &quot;high surf advisory&quot;            
+## [315] &quot;high swells&quot;                    &quot;high temperature record&quot;       
+## [317] &quot;high tides&quot;                     &quot;high water&quot;                    
+## [319] &quot;high waves&quot;                     &quot;high wind&quot;                     
+## [321] &quot;high wind (g40)&quot;                &quot;high wind 48&quot;                  
+## [323] &quot;high wind 63&quot;                   &quot;high wind 70&quot;                  
+## [325] &quot;high wind and heavy snow&quot;       &quot;high wind and high tides&quot;      
+## [327] &quot;high wind and seas&quot;             &quot;high wind damage&quot;              
+## [329] &quot;high wind/ blizzard&quot;            &quot;high wind/blizzard&quot;            
+## [331] &quot;high wind/blizzard/freezing ra&quot; &quot;high wind/heavy snow&quot;          
+## [333] &quot;high wind/low wind chill&quot;       &quot;high wind/seas&quot;                
+## [335] &quot;high wind/wind chill&quot;           &quot;high wind/wind chill/blizzard&quot; 
+## [337] &quot;high winds&quot;                     &quot;high winds 55&quot;                 
+## [339] &quot;high winds 57&quot;                  &quot;high winds 58&quot;                 
+## [341] &quot;high winds 63&quot;                  &quot;high winds 66&quot;                 
+## [343] &quot;high winds 67&quot;                  &quot;high winds 73&quot;                 
+## [345] &quot;high winds 76&quot;                  &quot;high winds 80&quot;                 
+## [347] &quot;high winds 82&quot;                  &quot;high winds and wind chill&quot;     
+## [349] &quot;high winds dust storm&quot;          &quot;high winds heavy rains&quot;        
+## [351] &quot;high winds/&quot;                    &quot;high winds/coastal flood&quot;      
+## [353] &quot;high winds/cold&quot;                &quot;high winds/flooding&quot;           
+## [355] &quot;high winds/heavy rain&quot;          &quot;high winds/snow&quot;               
+## [357] &quot;highway flooding&quot;               &quot;hot and dry&quot;                   
+## [359] &quot;hot pattern&quot;                    &quot;hot spell&quot;                     
+## [361] &quot;hot weather&quot;                    &quot;hot/dry pattern&quot;               
+## [363] &quot;hurricane&quot;                      &quot;hurricane-generated swells&quot;    
+## [365] &quot;hurricane edouard&quot;              &quot;hurricane emily&quot;               
+## [367] &quot;hurricane erin&quot;                 &quot;hurricane felix&quot;               
+## [369] &quot;hurricane gordon&quot;               &quot;hurricane opal&quot;                
+## [371] &quot;hurricane opal/high winds&quot;      &quot;hurricane/typhoon&quot;             
+## [373] &quot;hvy rain&quot;                       &quot;hyperthermia/exposure&quot;         
+## [375] &quot;hypothermia&quot;                    &quot;hypothermia/exposure&quot;          
+## [377] &quot;ice&quot;                            &quot;ice and snow&quot;                  
+## [379] &quot;ice floes&quot;                      &quot;ice fog&quot;                       
+## [381] &quot;ice jam&quot;                        &quot;ice jam flood (minor&quot;          
+## [383] &quot;ice jam flooding&quot;               &quot;ice on road&quot;                   
+## [385] &quot;ice pellets&quot;                    &quot;ice roads&quot;                     
+## [387] &quot;ice storm&quot;                      &quot;ice storm and snow&quot;            
+## [389] &quot;ice storm/flash flood&quot;          &quot;ice/snow&quot;                      
+## [391] &quot;ice/strong winds&quot;               &quot;icestorm/blizzard&quot;             
+## [393] &quot;icy roads&quot;                      &quot;lack of snow&quot;                  
+## [395] &quot;lake-effect snow&quot;               &quot;lake effect snow&quot;              
+## [397] &quot;lake flood&quot;                     &quot;lakeshore flood&quot;               
+## [399] &quot;landslide&quot;                      &quot;landslide/urban flood&quot;         
+## [401] &quot;landslides&quot;                     &quot;landslump&quot;                     
+## [403] &quot;landspout&quot;                      &quot;large wall cloud&quot;              
+## [405] &quot;late-season snowfall&quot;           &quot;late freeze&quot;                   
+## [407] &quot;late season hail&quot;               &quot;late season snow&quot;              
+## [409] &quot;late season snowfall&quot;           &quot;late snow&quot;                     
+## [411] &quot;light freezing rain&quot;            &quot;light snow&quot;                    
+## [413] &quot;light snow and sleet&quot;           &quot;light snow/flurries&quot;           
+## [415] &quot;light snow/freezing precip&quot;     &quot;light snowfall&quot;                
+## [417] &quot;lighting&quot;                       &quot;lightning&quot;                     
+## [419] &quot;lightning  wauseon&quot;             &quot;lightning and heavy rain&quot;      
+## [421] &quot;lightning and thunderstorm win&quot; &quot;lightning and winds&quot;           
+## [423] &quot;lightning damage&quot;               &quot;lightning fire&quot;                
+## [425] &quot;lightning injury&quot;               &quot;lightning thunderstorm winds&quot;  
+## [427] &quot;lightning thunderstorm windss&quot;  &quot;lightning.&quot;                    
+## [429] &quot;lightning/heavy rain&quot;           &quot;ligntning&quot;                     
+## [431] &quot;local flash flood&quot;              &quot;local flood&quot;                   
+## [433] &quot;locally heavy rain&quot;             &quot;low temperature&quot;               
+## [435] &quot;low temperature record&quot;         &quot;low wind chill&quot;                
+## [437] &quot;major flood&quot;                    &quot;marine accident&quot;               
+## [439] &quot;marine hail&quot;                    &quot;marine high wind&quot;              
+## [441] &quot;marine mishap&quot;                  &quot;marine strong wind&quot;            
+## [443] &quot;marine thunderstorm wind&quot;       &quot;marine tstm wind&quot;              
+## [445] &quot;metro storm, may 26&quot;            &quot;microburst&quot;                    
+## [447] &quot;microburst winds&quot;               &quot;mild and dry pattern&quot;          
+## [449] &quot;mild pattern&quot;                   &quot;mild/dry pattern&quot;              
+## [451] &quot;minor flood&quot;                    &quot;minor flooding&quot;                
+## [453] &quot;mixed precip&quot;                   &quot;mixed precipitation&quot;           
+## [455] &quot;moderate snow&quot;                  &quot;moderate snowfall&quot;             
+## [457] &quot;monthly precipitation&quot;          &quot;monthly rainfall&quot;              
+## [459] &quot;monthly snowfall&quot;               &quot;monthly temperature&quot;           
+## [461] &quot;mountain snows&quot;                 &quot;mud slide&quot;                     
+## [463] &quot;mud slides&quot;                     &quot;mud slides urban flooding&quot;     
+## [465] &quot;mud/rock slide&quot;                 &quot;mudslide&quot;                      
+## [467] &quot;mudslide/landslide&quot;             &quot;mudslides&quot;                     
+## [469] &quot;near record snow&quot;               &quot;no severe weather&quot;             
+## [471] &quot;non-severe wind damage&quot;         &quot;non-tstm wind&quot;                 
+## [473] &quot;non severe hail&quot;                &quot;non tstm wind&quot;                 
+## [475] &quot;none&quot;                           &quot;normal precipitation&quot;          
+## [477] &quot;northern lights&quot;                &quot;other&quot;                         
+## [479] &quot;patchy dense fog&quot;               &quot;patchy ice&quot;                    
+## [481] &quot;prolong cold&quot;                   &quot;prolong cold/snow&quot;             
+## [483] &quot;prolong warmth&quot;                 &quot;prolonged rain&quot;                
+## [485] &quot;rain&quot;                           &quot;rain (heavy)&quot;                  
+## [487] &quot;rain and wind&quot;                  &quot;rain damage&quot;                   
+## [489] &quot;rain/snow&quot;                      &quot;rain/wind&quot;                     
+## [491] &quot;rainstorm&quot;                      &quot;rapidly rising water&quot;          
+## [493] &quot;record  cold&quot;                   &quot;record cold&quot;                   
+## [495] &quot;record cold and high wind&quot;      &quot;record cold/frost&quot;             
+## [497] &quot;record cool&quot;                    &quot;record dry month&quot;              
+## [499] &quot;record dryness&quot;                 &quot;record heat&quot;                   
+## [501] &quot;record heat wave&quot;               &quot;record high&quot;                   
+## [503] &quot;record high temperature&quot;        &quot;record high temperatures&quot;      
+## [505] &quot;record low&quot;                     &quot;record low rainfall&quot;           
+## [507] &quot;record may snow&quot;                &quot;record precipitation&quot;          
+## [509] &quot;record rainfall&quot;                &quot;record snow&quot;                   
+## [511] &quot;record snow/cold&quot;               &quot;record snowfall&quot;               
+## [513] &quot;record temperature&quot;             &quot;record temperatures&quot;           
+## [515] &quot;record warm&quot;                    &quot;record warm temps.&quot;            
+## [517] &quot;record warmth&quot;                  &quot;record winter snow&quot;            
+## [519] &quot;record/excessive heat&quot;          &quot;record/excessive rainfall&quot;     
+## [521] &quot;red flag criteria&quot;              &quot;red flag fire wx&quot;              
+## [523] &quot;remnants of floyd&quot;              &quot;rip current&quot;                   
+## [525] &quot;rip currents&quot;                   &quot;rip currents heavy surf&quot;       
+## [527] &quot;rip currents/heavy surf&quot;        &quot;river and stream flood&quot;        
+## [529] &quot;river flood&quot;                    &quot;river flooding&quot;                
+## [531] &quot;rock slide&quot;                     &quot;rogue wave&quot;                    
+## [533] &quot;rotating wall cloud&quot;            &quot;rough seas&quot;                    
+## [535] &quot;rough surf&quot;                     &quot;rural flood&quot;                   
+## [537] &quot;saharan dust&quot;                   &quot;seasonal snowfall&quot;             
+## [539] &quot;seiche&quot;                         &quot;severe cold&quot;                   
+## [541] &quot;severe thunderstorm&quot;            &quot;severe thunderstorm winds&quot;     
+## [543] &quot;severe thunderstorms&quot;           &quot;severe turbulence&quot;             
+## [545] &quot;sleet&quot;                          &quot;sleet &amp; freezing rain&quot;         
+## [547] &quot;sleet storm&quot;                    &quot;sleet/freezing rain&quot;           
+## [549] &quot;sleet/ice storm&quot;                &quot;sleet/rain/snow&quot;               
+## [551] &quot;sleet/snow&quot;                     &quot;small hail&quot;                    
+## [553] &quot;small stream&quot;                   &quot;small stream and&quot;              
+## [555] &quot;small stream and urban flood&quot;   &quot;small stream and urban floodin&quot;
+## [557] &quot;small stream flood&quot;             &quot;small stream flooding&quot;         
+## [559] &quot;small stream urban flood&quot;       &quot;small stream/urban flood&quot;      
+## [561] &quot;sml stream fld&quot;                 &quot;smoke&quot;                         
+## [563] &quot;snow&quot;                           &quot;snow- high wind- wind chill&quot;   
+## [565] &quot;snow accumulation&quot;              &quot;snow advisory&quot;                 
+## [567] &quot;snow and cold&quot;                  &quot;snow and heavy snow&quot;           
+## [569] &quot;snow and ice&quot;                   &quot;snow and ice storm&quot;            
+## [571] &quot;snow and sleet&quot;                 &quot;snow and wind&quot;                 
+## [573] &quot;snow drought&quot;                   &quot;snow freezing rain&quot;            
+## [575] &quot;snow showers&quot;                   &quot;snow sleet&quot;                    
+## [577] &quot;snow squall&quot;                    &quot;snow squalls&quot;                  
+## [579] &quot;snow/ bitter cold&quot;              &quot;snow/ ice&quot;                     
+## [581] &quot;snow/blowing snow&quot;              &quot;snow/cold&quot;                     
+## [583] &quot;snow/freezing rain&quot;             &quot;snow/heavy snow&quot;               
+## [585] &quot;snow/high winds&quot;                &quot;snow/ice&quot;                      
+## [587] &quot;snow/ice storm&quot;                 &quot;snow/rain&quot;                     
+## [589] &quot;snow/rain/sleet&quot;                &quot;snow/sleet&quot;                    
+## [591] &quot;snow/sleet/freezing rain&quot;       &quot;snow/sleet/rain&quot;               
+## [593] &quot;snow\\cold&quot;                     &quot;snowfall record&quot;               
+## [595] &quot;snowmelt flooding&quot;              &quot;snowstorm&quot;                     
+## [597] &quot;southeast&quot;                      &quot;storm force winds&quot;             
+## [599] &quot;storm surge&quot;                    &quot;storm surge/tide&quot;              
+## [601] &quot;stream flooding&quot;                &quot;street flood&quot;                  
+## [603] &quot;street flooding&quot;                &quot;strong wind&quot;                   
+## [605] &quot;strong wind gust&quot;               &quot;strong winds&quot;                  
+## [607] &quot;summary august 10&quot;              &quot;summary august 11&quot;             
+## [609] &quot;summary august 17&quot;              &quot;summary august 2-3&quot;            
+## [611] &quot;summary august 21&quot;              &quot;summary august 28&quot;             
+## [613] &quot;summary august 4&quot;               &quot;summary august 7&quot;              
+## [615] &quot;summary august 9&quot;               &quot;summary jan 17&quot;                
+## [617] &quot;summary july 23-24&quot;             &quot;summary june 18-19&quot;            
+## [619] &quot;summary june 5-6&quot;               &quot;summary june 6&quot;                
+## [621] &quot;summary of april 12&quot;            &quot;summary of april 13&quot;           
+## [623] &quot;summary of april 21&quot;            &quot;summary of april 27&quot;           
+## [625] &quot;summary of april 3rd&quot;           &quot;summary of august 1&quot;           
+## [627] &quot;summary of july 11&quot;             &quot;summary of july 2&quot;             
+## [629] &quot;summary of july 22&quot;             &quot;summary of july 26&quot;            
+## [631] &quot;summary of july 29&quot;             &quot;summary of july 3&quot;             
+## [633] &quot;summary of june 10&quot;             &quot;summary of june 11&quot;            
+## [635] &quot;summary of june 12&quot;             &quot;summary of june 13&quot;            
+## [637] &quot;summary of june 15&quot;             &quot;summary of june 16&quot;            
+## [639] &quot;summary of june 18&quot;             &quot;summary of june 23&quot;            
+## [641] &quot;summary of june 24&quot;             &quot;summary of june 3&quot;             
+## [643] &quot;summary of june 30&quot;             &quot;summary of june 4&quot;             
+## [645] &quot;summary of june 6&quot;              &quot;summary of march 14&quot;           
+## [647] &quot;summary of march 23&quot;            &quot;summary of march 24&quot;           
+## [649] &quot;summary of march 24-25&quot;         &quot;summary of march 27&quot;           
+## [651] &quot;summary of march 29&quot;            &quot;summary of may 10&quot;             
+## [653] &quot;summary of may 13&quot;              &quot;summary of may 14&quot;             
+## [655] &quot;summary of may 22&quot;              &quot;summary of may 22 am&quot;          
+## [657] &quot;summary of may 22 pm&quot;           &quot;summary of may 26 am&quot;          
+## [659] &quot;summary of may 26 pm&quot;           &quot;summary of may 31 am&quot;          
+## [661] &quot;summary of may 31 pm&quot;           &quot;summary of may 9-10&quot;           
+## [663] &quot;summary sept. 25-26&quot;            &quot;summary september 20&quot;          
+## [665] &quot;summary september 23&quot;           &quot;summary september 3&quot;           
+## [667] &quot;summary september 4&quot;            &quot;summary: nov. 16&quot;              
+## [669] &quot;summary: nov. 6-7&quot;              &quot;summary: oct. 20-21&quot;           
+## [671] &quot;summary: october 31&quot;            &quot;summary: sept. 18&quot;             
+## [673] &quot;temperature record&quot;             &quot;thuderstorm winds&quot;             
+## [675] &quot;thundeerstorm winds&quot;            &quot;thunderestorm winds&quot;           
+## [677] &quot;thundersnow&quot;                    &quot;thundersnow shower&quot;            
+## [679] &quot;thunderstorm&quot;                   &quot;thunderstorm  winds&quot;           
+## [681] &quot;thunderstorm damage&quot;            &quot;thunderstorm damage to&quot;        
+## [683] &quot;thunderstorm hail&quot;              &quot;thunderstorm w inds&quot;           
+## [685] &quot;thunderstorm wind&quot;              &quot;thunderstorm wind (g40)&quot;       
+## [687] &quot;thunderstorm wind 50&quot;           &quot;thunderstorm wind 52&quot;          
+## [689] &quot;thunderstorm wind 56&quot;           &quot;thunderstorm wind 59&quot;          
+## [691] &quot;thunderstorm wind 59 mph&quot;       &quot;thunderstorm wind 59 mph.&quot;     
+## [693] &quot;thunderstorm wind 60 mph&quot;       &quot;thunderstorm wind 65 mph&quot;      
+## [695] &quot;thunderstorm wind 65mph&quot;        &quot;thunderstorm wind 69&quot;          
+## [697] &quot;thunderstorm wind 98 mph&quot;       &quot;thunderstorm wind g50&quot;         
+## [699] &quot;thunderstorm wind g51&quot;          &quot;thunderstorm wind g52&quot;         
+## [701] &quot;thunderstorm wind g55&quot;          &quot;thunderstorm wind g60&quot;         
+## [703] &quot;thunderstorm wind g61&quot;          &quot;thunderstorm wind trees&quot;       
+## [705] &quot;thunderstorm wind.&quot;             &quot;thunderstorm wind/ tree&quot;       
+## [707] &quot;thunderstorm wind/ trees&quot;       &quot;thunderstorm wind/awning&quot;      
+## [709] &quot;thunderstorm wind/hail&quot;         &quot;thunderstorm wind/lightning&quot;   
+## [711] &quot;thunderstorm winds&quot;             &quot;thunderstorm winds      le cen&quot;
+## [713] &quot;thunderstorm winds 13&quot;          &quot;thunderstorm winds 2&quot;          
+## [715] &quot;thunderstorm winds 50&quot;          &quot;thunderstorm winds 52&quot;         
+## [717] &quot;thunderstorm winds 53&quot;          &quot;thunderstorm winds 60&quot;         
+## [719] &quot;thunderstorm winds 61&quot;          &quot;thunderstorm winds 62&quot;         
+## [721] &quot;thunderstorm winds 63 mph&quot;      &quot;thunderstorm winds and&quot;        
+## [723] &quot;thunderstorm winds funnel clou&quot; &quot;thunderstorm winds g&quot;          
+## [725] &quot;thunderstorm winds g60&quot;         &quot;thunderstorm winds hail&quot;       
+## [727] &quot;thunderstorm winds heavy rain&quot;  &quot;thunderstorm winds lightning&quot;  
+## [729] &quot;thunderstorm winds small strea&quot; &quot;thunderstorm winds urban flood&quot;
+## [731] &quot;thunderstorm winds.&quot;            &quot;thunderstorm winds/ flood&quot;     
+## [733] &quot;thunderstorm winds/ hail&quot;       &quot;thunderstorm winds/flash flood&quot;
+## [735] &quot;thunderstorm winds/flooding&quot;    &quot;thunderstorm winds/funnel clou&quot;
+## [737] &quot;thunderstorm winds/hail&quot;        &quot;thunderstorm winds/heavy rain&quot; 
+## [739] &quot;thunderstorm winds53&quot;           &quot;thunderstorm windshail&quot;        
+## [741] &quot;thunderstorm windss&quot;            &quot;thunderstorm wins&quot;             
+## [743] &quot;thunderstorms&quot;                  &quot;thunderstorms wind&quot;            
+## [745] &quot;thunderstorms winds&quot;            &quot;thunderstormw&quot;                 
+## [747] &quot;thunderstormw 50&quot;               &quot;thunderstormw winds&quot;           
+## [749] &quot;thunderstormwinds&quot;              &quot;thunderstrom wind&quot;             
+## [751] &quot;thunderstrom winds&quot;             &quot;thundertorm winds&quot;             
+## [753] &quot;thundertsorm wind&quot;              &quot;thundestorm winds&quot;             
+## [755] &quot;thunerstorm winds&quot;              &quot;tidal flood&quot;                   
+## [757] &quot;tidal flooding&quot;                 &quot;tornado&quot;                       
+## [759] &quot;tornado debris&quot;                 &quot;tornado f0&quot;                    
+## [761] &quot;tornado f1&quot;                     &quot;tornado f2&quot;                    
+## [763] &quot;tornado f3&quot;                     &quot;tornado/waterspout&quot;            
+## [765] &quot;tornadoes&quot;                      &quot;tornadoes, tstm wind, hail&quot;    
+## [767] &quot;tornados&quot;                       &quot;torndao&quot;                       
+## [769] &quot;torrential rain&quot;                &quot;torrential rainfall&quot;           
+## [771] &quot;tropical depression&quot;            &quot;tropical storm&quot;                
+## [773] &quot;tropical storm alberto&quot;         &quot;tropical storm dean&quot;           
+## [775] &quot;tropical storm gordon&quot;          &quot;tropical storm jerry&quot;          
+## [777] &quot;tstm&quot;                           &quot;tstm heavy rain&quot;               
+## [779] &quot;tstm wind&quot;                      &quot;tstm wind  (g45)&quot;              
+## [781] &quot;tstm wind (41)&quot;                 &quot;tstm wind (g35)&quot;               
+## [783] &quot;tstm wind (g40)&quot;                &quot;tstm wind (g45)&quot;               
+## [785] &quot;tstm wind 40&quot;                   &quot;tstm wind 45&quot;                  
+## [787] &quot;tstm wind 50&quot;                   &quot;tstm wind 51&quot;                  
+## [789] &quot;tstm wind 52&quot;                   &quot;tstm wind 55&quot;                  
+## [791] &quot;tstm wind 65)&quot;                  &quot;tstm wind and lightning&quot;       
+## [793] &quot;tstm wind damage&quot;               &quot;tstm wind g45&quot;                 
+## [795] &quot;tstm wind g58&quot;                  &quot;tstm wind/hail&quot;                
+## [797] &quot;tstm winds&quot;                     &quot;tstm wnd&quot;                      
+## [799] &quot;tstmw&quot;                          &quot;tsunami&quot;                       
+## [801] &quot;tunderstorm wind&quot;               &quot;typhoon&quot;                       
+## [803] &quot;unseasonable cold&quot;              &quot;unseasonably cold&quot;             
+## [805] &quot;unseasonably cool&quot;              &quot;unseasonably cool &amp; wet&quot;       
+## [807] &quot;unseasonably dry&quot;               &quot;unseasonably hot&quot;              
+## [809] &quot;unseasonably warm&quot;              &quot;unseasonably warm &amp; wet&quot;       
+## [811] &quot;unseasonably warm and dry&quot;      &quot;unseasonably warm year&quot;        
+## [813] &quot;unseasonably warm/wet&quot;          &quot;unseasonably wet&quot;              
+## [815] &quot;unseasonal low temp&quot;            &quot;unseasonal rain&quot;               
+## [817] &quot;unusual warmth&quot;                 &quot;unusual/record warmth&quot;         
+## [819] &quot;unusually cold&quot;                 &quot;unusually late snow&quot;           
+## [821] &quot;unusually warm&quot;                 &quot;urban and small&quot;               
+## [823] &quot;urban and small stream&quot;         &quot;urban and small stream flood&quot;  
+## [825] &quot;urban and small stream floodin&quot; &quot;urban flood&quot;                   
+## [827] &quot;urban flood landslide&quot;          &quot;urban flooding&quot;                
+## [829] &quot;urban floods&quot;                   &quot;urban small&quot;                   
+## [831] &quot;urban small stream flood&quot;       &quot;urban/small&quot;                   
+## [833] &quot;urban/small flooding&quot;           &quot;urban/small stream&quot;            
+## [835] &quot;urban/small stream  flood&quot;      &quot;urban/small stream flood&quot;      
+## [837] &quot;urban/small stream flooding&quot;    &quot;urban/small strm fldg&quot;         
+## [839] &quot;urban/sml stream fld&quot;           &quot;urban/sml stream fldg&quot;         
+## [841] &quot;urban/street flooding&quot;          &quot;very dry&quot;                      
+## [843] &quot;very warm&quot;                      &quot;vog&quot;                           
+## [845] &quot;volcanic ash&quot;                   &quot;volcanic ash plume&quot;            
+## [847] &quot;volcanic ashfall&quot;               &quot;volcanic eruption&quot;             
+## [849] &quot;wake low wind&quot;                  &quot;wall cloud&quot;                    
+## [851] &quot;wall cloud/funnel cloud&quot;        &quot;warm dry conditions&quot;           
+## [853] &quot;warm weather&quot;                   &quot;water spout&quot;                   
+## [855] &quot;waterspout&quot;                     &quot;waterspout-&quot;                   
+## [857] &quot;waterspout-tornado&quot;             &quot;waterspout funnel cloud&quot;       
+## [859] &quot;waterspout tornado&quot;             &quot;waterspout/&quot;                   
+## [861] &quot;waterspout/ tornado&quot;            &quot;waterspout/tornado&quot;            
+## [863] &quot;waterspouts&quot;                    &quot;wayterspout&quot;                   
+## [865] &quot;wet micoburst&quot;                  &quot;wet microburst&quot;                
+## [867] &quot;wet month&quot;                      &quot;wet snow&quot;                      
+## [869] &quot;wet weather&quot;                    &quot;wet year&quot;                      
+## [871] &quot;whirlwind&quot;                      &quot;wild fires&quot;                    
+## [873] &quot;wild/forest fire&quot;               &quot;wild/forest fires&quot;             
+## [875] &quot;wildfire&quot;                       &quot;wildfires&quot;                     
+## [877] &quot;wind&quot;                           &quot;wind advisory&quot;                 
+## [879] &quot;wind and wave&quot;                  &quot;wind chill&quot;                    
+## [881] &quot;wind chill/high wind&quot;           &quot;wind damage&quot;                   
+## [883] &quot;wind gusts&quot;                     &quot;wind storm&quot;                    
+## [885] &quot;wind/hail&quot;                      &quot;winds&quot;                         
+## [887] &quot;winter mix&quot;                     &quot;winter storm&quot;                  
+## [889] &quot;winter storm high winds&quot;        &quot;winter storm/high wind&quot;        
+## [891] &quot;winter storm/high winds&quot;        &quot;winter storms&quot;                 
+## [893] &quot;winter weather&quot;                 &quot;winter weather mix&quot;            
+## [895] &quot;winter weather/mix&quot;             &quot;wintery mix&quot;                   
+## [897] &quot;wintry mix&quot;                     &quot;wnd&quot;
+</code></pre>
+
+<p>Out of these, all events described as summaries are removed</p>
+
+<pre><code class="r">reducedData &lt;- reducedData[!grepl(&quot;summa&quot;, reducedData$EVTYPE, ignore.case = TRUE), 
+    ]
+</code></pre>
+
+<p>The remaining events are assigned to broader categories</p>
+
+<ul>
+<li>Tornadoes, also containing gustnados, funnel clouds, water spouts and dust devils</li>
+<li>Blizzards, also containing winter storms and ice storms</li>
+<li>Cold related events such as snow, ice, general winter events, frost, etc.</li>
+<li>Hail</li>
+<li>Rain</li>
+<li>Wind, including storms and hurricanes</li>
+<li>Floods</li>
+<li>Marine, containing rip currents, tides and tsunamis</li>
+<li>Lightning</li>
+<li>Heat related events, including Fires</li>
+<li>Dryness</li>
+<li>Other events<br/></li>
+</ul>
+
+<p>This categorization is constructed as disjunct, i.e. any event is assigned to exactly one of these categories in the above order. The assignment is performed by searching key strings in the EVTYPE variable. After this grouping, only a small proportion of the original data could not be assigned to any of the categories, which means that it was by definition assigned to category Other. The following tables show which event was assigned to which category.</p>
+
+<pre><code class="r">reducedData$evCat &lt;- NA
+reducedData$evCat[grepl(&quot;torna|gustna|funnel|spout|dust dev&quot;, reducedData$EVTYPE, 
+    ignore.case = TRUE) &amp; is.na(reducedData$evCat)] &lt;- &quot;Tornado&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Tornado&quot;]))
+</code></pre>
+
+<pre><code>##  [1] &quot; waterspout&quot;                    &quot;cold air funnel&quot;               
+##  [3] &quot;cold air funnels&quot;               &quot;cold air tornado&quot;              
+##  [5] &quot;dust devel&quot;                     &quot;dust devil&quot;                    
+##  [7] &quot;dust devil waterspout&quot;          &quot;funnel&quot;                        
+##  [9] &quot;funnel cloud&quot;                   &quot;funnel cloud.&quot;                 
+## [11] &quot;funnel cloud/hail&quot;              &quot;funnel clouds&quot;                 
+## [13] &quot;funnels&quot;                        &quot;gustnado&quot;                      
+## [15] &quot;gustnado and&quot;                   &quot;landspout&quot;                     
+## [17] &quot;thunderstorm winds funnel clou&quot; &quot;thunderstorm winds/funnel clou&quot;
+## [19] &quot;tornado&quot;                        &quot;tornado debris&quot;                
+## [21] &quot;tornado f0&quot;                     &quot;tornado f1&quot;                    
+## [23] &quot;tornado f2&quot;                     &quot;tornado f3&quot;                    
+## [25] &quot;tornado/waterspout&quot;             &quot;tornadoes&quot;                     
+## [27] &quot;tornadoes, tstm wind, hail&quot;     &quot;tornados&quot;                      
+## [29] &quot;wall cloud/funnel cloud&quot;        &quot;water spout&quot;                   
+## [31] &quot;waterspout&quot;                     &quot;waterspout-&quot;                   
+## [33] &quot;waterspout-tornado&quot;             &quot;waterspout funnel cloud&quot;       
+## [35] &quot;waterspout tornado&quot;             &quot;waterspout/&quot;                   
+## [37] &quot;waterspout/ tornado&quot;            &quot;waterspout/tornado&quot;            
+## [39] &quot;waterspouts&quot;                    &quot;wayterspout&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;blitz|bliz|winter sto|ice sto&quot;, reducedData$EVTYPE, 
+    ignore.case = TRUE) &amp; is.na(reducedData$evCat)] &lt;- &quot;Blizzard&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Blizzard&quot;]))
+</code></pre>
+
+<pre><code>##  [1] &quot;blizzard&quot;                       &quot;blizzard and extreme wind chil&quot;
+##  [3] &quot;blizzard and heavy snow&quot;        &quot;blizzard weather&quot;              
+##  [5] &quot;blizzard/freezing rain&quot;         &quot;blizzard/heavy snow&quot;           
+##  [7] &quot;blizzard/high wind&quot;             &quot;blizzard/winter storm&quot;         
+##  [9] &quot;glaze/ice storm&quot;                &quot;ground blizzard&quot;               
+## [11] &quot;heavy snow and ice storm&quot;       &quot;heavy snow/blizzard&quot;           
+## [13] &quot;heavy snow/blizzard/avalanche&quot;  &quot;heavy snow/ice storm&quot;          
+## [15] &quot;heavy snow/winter storm&quot;        &quot;high wind/ blizzard&quot;           
+## [17] &quot;high wind/blizzard&quot;             &quot;high wind/blizzard/freezing ra&quot;
+## [19] &quot;high wind/wind chill/blizzard&quot;  &quot;ice storm&quot;                     
+## [21] &quot;ice storm and snow&quot;             &quot;ice storm/flash flood&quot;         
+## [23] &quot;icestorm/blizzard&quot;              &quot;sleet/ice storm&quot;               
+## [25] &quot;snow and ice storm&quot;             &quot;snow/ice storm&quot;                
+## [27] &quot;winter storm&quot;                   &quot;winter storm high winds&quot;       
+## [29] &quot;winter storm/high wind&quot;         &quot;winter storm/high winds&quot;       
+## [31] &quot;winter storms&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;snow|ice|icy|freez|wint|cold|frost|chill|hypotherm&quot;, 
+    reducedData$EVTYPE, ignore.case = TRUE) &amp; is.na(reducedData$evCat)] &lt;- &quot;Cold&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Cold&quot;]))
+</code></pre>
+
+<pre><code>##   [1] &quot;accumulated snowfall&quot;           &quot;agricultural freeze&quot;           
+##   [3] &quot;bitter wind chill&quot;              &quot;bitter wind chill temperatures&quot;
+##   [5] &quot;black ice&quot;                      &quot;blowing snow&quot;                  
+##   [7] &quot;blowing snow- extreme wind chi&quot; &quot;blowing snow &amp; extreme wind ch&quot;
+##   [9] &quot;blowing snow/extreme wind chil&quot; &quot;cold&quot;                          
+##  [11] &quot;cold and frost&quot;                 &quot;cold and snow&quot;                 
+##  [13] &quot;cold and wet conditions&quot;        &quot;cold temperature&quot;              
+##  [15] &quot;cold temperatures&quot;              &quot;cold wave&quot;                     
+##  [17] &quot;cold weather&quot;                   &quot;cold wind chill temperatures&quot;  
+##  [19] &quot;cold/wind chill&quot;                &quot;cold/winds&quot;                    
+##  [21] &quot;damaging freeze&quot;                &quot;drifting snow&quot;                 
+##  [23] &quot;early freeze&quot;                   &quot;early frost&quot;                   
+##  [25] &quot;early snow&quot;                     &quot;early snowfall&quot;                
+##  [27] &quot;excessive cold&quot;                 &quot;excessive snow&quot;                
+##  [29] &quot;extended cold&quot;                  &quot;extreme cold&quot;                  
+##  [31] &quot;extreme cold/wind chill&quot;        &quot;extreme wind chill&quot;            
+##  [33] &quot;extreme wind chill/blowing sno&quot; &quot;extreme wind chills&quot;           
+##  [35] &quot;extreme windchill&quot;              &quot;extreme windchill temperatures&quot;
+##  [37] &quot;extreme/record cold&quot;            &quot;falling snow/ice&quot;              
+##  [39] &quot;first frost&quot;                    &quot;first snow&quot;                    
+##  [41] &quot;flash flood from ice jams&quot;      &quot;fog and cold temperatures&quot;     
+##  [43] &quot;freeze&quot;                         &quot;freezing drizzle&quot;              
+##  [45] &quot;freezing drizzle and freezing&quot;  &quot;freezing fog&quot;                  
+##  [47] &quot;freezing rain&quot;                  &quot;freezing rain and sleet&quot;       
+##  [49] &quot;freezing rain and snow&quot;         &quot;freezing rain sleet and&quot;       
+##  [51] &quot;freezing rain sleet and light&quot;  &quot;freezing rain/sleet&quot;           
+##  [53] &quot;freezing rain/snow&quot;             &quot;freezing spray&quot;                
+##  [55] &quot;frost&quot;                          &quot;frost/freeze&quot;                  
+##  [57] &quot;frost\\freeze&quot;                  &quot;glaze ice&quot;                     
+##  [59] &quot;hail/icy roads&quot;                 &quot;hard freeze&quot;                   
+##  [61] &quot;heavy lake snow&quot;                &quot;heavy rain/snow&quot;               
+##  [63] &quot;heavy snow&quot;                     &quot;heavy snow-squalls&quot;            
+##  [65] &quot;heavy snow   freezing rain&quot;     &quot;heavy snow &amp; ice&quot;              
+##  [67] &quot;heavy snow and&quot;                 &quot;heavy snow and high winds&quot;     
+##  [69] &quot;heavy snow and ice&quot;             &quot;heavy snow and strong winds&quot;   
+##  [71] &quot;heavy snow andblowing snow&quot;     &quot;heavy snow shower&quot;             
+##  [73] &quot;heavy snow squalls&quot;             &quot;heavy snow/blowing snow&quot;       
+##  [75] &quot;heavy snow/freezing rain&quot;       &quot;heavy snow/high&quot;               
+##  [77] &quot;heavy snow/high wind&quot;           &quot;heavy snow/high winds&quot;         
+##  [79] &quot;heavy snow/high winds &amp; flood&quot;  &quot;heavy snow/high winds/freezing&quot;
+##  [81] &quot;heavy snow/ice&quot;                 &quot;heavy snow/sleet&quot;              
+##  [83] &quot;heavy snow/squalls&quot;             &quot;heavy snow/wind&quot;               
+##  [85] &quot;heavy snowpack&quot;                 &quot;heavy wet snow&quot;                
+##  [87] &quot;high wind and heavy snow&quot;       &quot;high wind/heavy snow&quot;          
+##  [89] &quot;high wind/low wind chill&quot;       &quot;high wind/wind chill&quot;          
+##  [91] &quot;high winds and wind chill&quot;      &quot;high winds/cold&quot;               
+##  [93] &quot;high winds/snow&quot;                &quot;hypothermia&quot;                   
+##  [95] &quot;hypothermia/exposure&quot;           &quot;ice&quot;                           
+##  [97] &quot;ice and snow&quot;                   &quot;ice floes&quot;                     
+##  [99] &quot;ice fog&quot;                        &quot;ice jam&quot;                       
+## [101] &quot;ice jam flood (minor&quot;           &quot;ice jam flooding&quot;              
+## [103] &quot;ice on road&quot;                    &quot;ice pellets&quot;                   
+## [105] &quot;ice roads&quot;                      &quot;ice/snow&quot;                      
+## [107] &quot;ice/strong winds&quot;               &quot;icy roads&quot;                     
+## [109] &quot;lack of snow&quot;                   &quot;lake-effect snow&quot;              
+## [111] &quot;lake effect snow&quot;               &quot;late-season snowfall&quot;          
+## [113] &quot;late freeze&quot;                    &quot;late season snow&quot;              
+## [115] &quot;late season snowfall&quot;           &quot;late snow&quot;                     
+## [117] &quot;light freezing rain&quot;            &quot;light snow&quot;                    
+## [119] &quot;light snow and sleet&quot;           &quot;light snow/flurries&quot;           
+## [121] &quot;light snow/freezing precip&quot;     &quot;light snowfall&quot;                
+## [123] &quot;low wind chill&quot;                 &quot;moderate snow&quot;                 
+## [125] &quot;moderate snowfall&quot;              &quot;monthly snowfall&quot;              
+## [127] &quot;mountain snows&quot;                 &quot;near record snow&quot;              
+## [129] &quot;patchy ice&quot;                     &quot;prolong cold&quot;                  
+## [131] &quot;prolong cold/snow&quot;              &quot;rain/snow&quot;                     
+## [133] &quot;record  cold&quot;                   &quot;record cold&quot;                   
+## [135] &quot;record cold and high wind&quot;      &quot;record cold/frost&quot;             
+## [137] &quot;record may snow&quot;                &quot;record snow&quot;                   
+## [139] &quot;record snow/cold&quot;               &quot;record snowfall&quot;               
+## [141] &quot;record winter snow&quot;             &quot;seasonal snowfall&quot;             
+## [143] &quot;severe cold&quot;                    &quot;sleet &amp; freezing rain&quot;         
+## [145] &quot;sleet/freezing rain&quot;            &quot;sleet/rain/snow&quot;               
+## [147] &quot;sleet/snow&quot;                     &quot;snow&quot;                          
+## [149] &quot;snow- high wind- wind chill&quot;    &quot;snow accumulation&quot;             
+## [151] &quot;snow advisory&quot;                  &quot;snow and cold&quot;                 
+## [153] &quot;snow and heavy snow&quot;            &quot;snow and ice&quot;                  
+## [155] &quot;snow and sleet&quot;                 &quot;snow and wind&quot;                 
+## [157] &quot;snow drought&quot;                   &quot;snow freezing rain&quot;            
+## [159] &quot;snow showers&quot;                   &quot;snow sleet&quot;                    
+## [161] &quot;snow squall&quot;                    &quot;snow squalls&quot;                  
+## [163] &quot;snow/ bitter cold&quot;              &quot;snow/ ice&quot;                     
+## [165] &quot;snow/blowing snow&quot;              &quot;snow/cold&quot;                     
+## [167] &quot;snow/freezing rain&quot;             &quot;snow/heavy snow&quot;               
+## [169] &quot;snow/high winds&quot;                &quot;snow/ice&quot;                      
+## [171] &quot;snow/rain&quot;                      &quot;snow/rain/sleet&quot;               
+## [173] &quot;snow/sleet&quot;                     &quot;snow/sleet/freezing rain&quot;      
+## [175] &quot;snow/sleet/rain&quot;                &quot;snow\\cold&quot;                    
+## [177] &quot;snowfall record&quot;                &quot;snowmelt flooding&quot;             
+## [179] &quot;snowstorm&quot;                      &quot;thundersnow&quot;                   
+## [181] &quot;thundersnow shower&quot;             &quot;unseasonable cold&quot;             
+## [183] &quot;unseasonably cold&quot;              &quot;unusually cold&quot;                
+## [185] &quot;unusually late snow&quot;            &quot;wet snow&quot;                      
+## [187] &quot;wind chill&quot;                     &quot;wind chill/high wind&quot;          
+## [189] &quot;winter mix&quot;                     &quot;winter weather&quot;                
+## [191] &quot;winter weather mix&quot;             &quot;winter weather/mix&quot;            
+## [193] &quot;wintery mix&quot;                    &quot;wintry mix&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;hail&quot;, reducedData$EVTYPE, ignore.case = TRUE) &amp; is.na(reducedData$evCat)] &lt;- &quot;Hail&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Hail&quot;]))
+</code></pre>
+
+<pre><code>##  [1] &quot;deep hail&quot;                &quot;gusty wind/hail&quot;         
+##  [3] &quot;hail&quot;                     &quot;hail 0.75&quot;               
+##  [5] &quot;hail 0.88&quot;                &quot;hail 075&quot;                
+##  [7] &quot;hail 088&quot;                 &quot;hail 1.00&quot;               
+##  [9] &quot;hail 1.75&quot;                &quot;hail 1.75)&quot;              
+## [11] &quot;hail 100&quot;                 &quot;hail 125&quot;                
+## [13] &quot;hail 150&quot;                 &quot;hail 175&quot;                
+## [15] &quot;hail 200&quot;                 &quot;hail 225&quot;                
+## [17] &quot;hail 275&quot;                 &quot;hail 450&quot;                
+## [19] &quot;hail 75&quot;                  &quot;hail 80&quot;                 
+## [21] &quot;hail 88&quot;                  &quot;hail aloft&quot;              
+## [23] &quot;hail damage&quot;              &quot;hail flooding&quot;           
+## [25] &quot;hail storm&quot;               &quot;hail(0.75)&quot;              
+## [27] &quot;hail/wind&quot;                &quot;hail/winds&quot;              
+## [29] &quot;hailstorm&quot;                &quot;hailstorms&quot;              
+## [31] &quot;late season hail&quot;         &quot;marine hail&quot;             
+## [33] &quot;non severe hail&quot;          &quot;small hail&quot;              
+## [35] &quot;thunderstorm hail&quot;        &quot;thunderstorm wind/hail&quot;  
+## [37] &quot;thunderstorm winds hail&quot;  &quot;thunderstorm winds/ hail&quot;
+## [39] &quot;thunderstorm winds/hail&quot;  &quot;thunderstorm windshail&quot;  
+## [41] &quot;tstm wind/hail&quot;           &quot;wind/hail&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;rain&quot;, reducedData$EVTYPE, ignore.case = TRUE) &amp; is.na(reducedData$evCat)] &lt;- &quot;Rain&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Rain&quot;]))
+</code></pre>
+
+<pre><code>##  [1] &quot;early rain&quot;                     &quot;excessive rain&quot;                
+##  [3] &quot;excessive rainfall&quot;             &quot;flash flood - heavy rain&quot;      
+##  [5] &quot;flash flood/heavy rain&quot;         &quot;flood &amp; heavy rain&quot;            
+##  [7] &quot;flood/rain/wind&quot;                &quot;flood/rain/winds&quot;              
+##  [9] &quot;flooding/heavy rain&quot;            &quot;gusty wind/hvy rain&quot;           
+## [11] &quot;gusty wind/rain&quot;                &quot;heavy rain&quot;                    
+## [13] &quot;heavy rain and flood&quot;           &quot;heavy rain and wind&quot;           
+## [15] &quot;heavy rain effects&quot;             &quot;heavy rain/flooding&quot;           
+## [17] &quot;heavy rain/high surf&quot;           &quot;heavy rain/lightning&quot;          
+## [19] &quot;heavy rain/mudslides/flood&quot;     &quot;heavy rain/severe weather&quot;     
+## [21] &quot;heavy rain/small stream urban&quot;  &quot;heavy rain/urban flood&quot;        
+## [23] &quot;heavy rain/wind&quot;                &quot;heavy rain; urban flood winds;&quot;
+## [25] &quot;heavy rainfall&quot;                 &quot;heavy rains&quot;                   
+## [27] &quot;heavy rains/flooding&quot;           &quot;high winds heavy rains&quot;        
+## [29] &quot;high winds/heavy rain&quot;          &quot;hvy rain&quot;                      
+## [31] &quot;lightning and heavy rain&quot;       &quot;lightning/heavy rain&quot;          
+## [33] &quot;locally heavy rain&quot;             &quot;monthly rainfall&quot;              
+## [35] &quot;prolonged rain&quot;                 &quot;rain&quot;                          
+## [37] &quot;rain (heavy)&quot;                   &quot;rain and wind&quot;                 
+## [39] &quot;rain damage&quot;                    &quot;rain/wind&quot;                     
+## [41] &quot;rainstorm&quot;                      &quot;record low rainfall&quot;           
+## [43] &quot;record rainfall&quot;                &quot;record/excessive rainfall&quot;     
+## [45] &quot;thunderstorm winds heavy rain&quot;  &quot;thunderstorm winds/heavy rain&quot; 
+## [47] &quot;torrential rain&quot;                &quot;torrential rainfall&quot;           
+## [49] &quot;tstm heavy rain&quot;                &quot;unseasonal rain&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;wind|wnd|storm|hurr&quot;, reducedData$EVTYPE, ignore.case = TRUE) &amp; 
+    is.na(reducedData$evCat)] &lt;- &quot;Wind&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Wind&quot;]))
+</code></pre>
+
+<pre><code>##   [1] &quot; tstm wind&quot;                     &quot; tstm wind (g45)&quot;              
+##   [3] &quot; wind&quot;                          &quot;coastal storm&quot;                 
+##   [5] &quot;coastalstorm&quot;                   &quot;downburst winds&quot;               
+##   [7] &quot;dry microburst winds&quot;           &quot;dry mircoburst winds&quot;          
+##   [9] &quot;dust storm&quot;                     &quot;dust storm/high winds&quot;         
+##  [11] &quot;duststorm&quot;                      &quot;flash flood winds&quot;             
+##  [13] &quot;flash flooding/thunderstorm wi&quot; &quot;flood/strong wind&quot;             
+##  [15] &quot;gradient wind&quot;                  &quot;gradient winds&quot;                
+##  [17] &quot;gusty lake wind&quot;                &quot;gusty thunderstorm wind&quot;       
+##  [19] &quot;gusty thunderstorm winds&quot;       &quot;gusty wind&quot;                    
+##  [21] &quot;gusty winds&quot;                    &quot;heavy surf and wind&quot;           
+##  [23] &quot;high  winds&quot;                    &quot;high wind&quot;                     
+##  [25] &quot;high wind (g40)&quot;                &quot;high wind 48&quot;                  
+##  [27] &quot;high wind 63&quot;                   &quot;high wind 70&quot;                  
+##  [29] &quot;high wind and high tides&quot;       &quot;high wind and seas&quot;            
+##  [31] &quot;high wind damage&quot;               &quot;high wind/seas&quot;                
+##  [33] &quot;high winds&quot;                     &quot;high winds 55&quot;                 
+##  [35] &quot;high winds 57&quot;                  &quot;high winds 58&quot;                 
+##  [37] &quot;high winds 63&quot;                  &quot;high winds 66&quot;                 
+##  [39] &quot;high winds 67&quot;                  &quot;high winds 73&quot;                 
+##  [41] &quot;high winds 76&quot;                  &quot;high winds 80&quot;                 
+##  [43] &quot;high winds 82&quot;                  &quot;high winds dust storm&quot;         
+##  [45] &quot;high winds/&quot;                    &quot;high winds/coastal flood&quot;      
+##  [47] &quot;high winds/flooding&quot;            &quot;hurricane&quot;                     
+##  [49] &quot;hurricane-generated swells&quot;     &quot;hurricane edouard&quot;             
+##  [51] &quot;hurricane emily&quot;                &quot;hurricane erin&quot;                
+##  [53] &quot;hurricane felix&quot;                &quot;hurricane gordon&quot;              
+##  [55] &quot;hurricane opal&quot;                 &quot;hurricane opal/high winds&quot;     
+##  [57] &quot;hurricane/typhoon&quot;              &quot;lightning and thunderstorm win&quot;
+##  [59] &quot;lightning and winds&quot;            &quot;lightning thunderstorm winds&quot;  
+##  [61] &quot;lightning thunderstorm windss&quot;  &quot;marine high wind&quot;              
+##  [63] &quot;marine strong wind&quot;             &quot;marine thunderstorm wind&quot;      
+##  [65] &quot;marine tstm wind&quot;               &quot;metro storm, may 26&quot;           
+##  [67] &quot;microburst winds&quot;               &quot;non-severe wind damage&quot;        
+##  [69] &quot;non-tstm wind&quot;                  &quot;non tstm wind&quot;                 
+##  [71] &quot;severe thunderstorm&quot;            &quot;severe thunderstorm winds&quot;     
+##  [73] &quot;severe thunderstorms&quot;           &quot;sleet storm&quot;                   
+##  [75] &quot;storm force winds&quot;              &quot;storm surge&quot;                   
+##  [77] &quot;storm surge/tide&quot;               &quot;strong wind&quot;                   
+##  [79] &quot;strong wind gust&quot;               &quot;strong winds&quot;                  
+##  [81] &quot;thuderstorm winds&quot;              &quot;thundeerstorm winds&quot;           
+##  [83] &quot;thunderestorm winds&quot;            &quot;thunderstorm&quot;                  
+##  [85] &quot;thunderstorm  winds&quot;            &quot;thunderstorm damage&quot;           
+##  [87] &quot;thunderstorm damage to&quot;         &quot;thunderstorm w inds&quot;           
+##  [89] &quot;thunderstorm wind&quot;              &quot;thunderstorm wind (g40)&quot;       
+##  [91] &quot;thunderstorm wind 50&quot;           &quot;thunderstorm wind 52&quot;          
+##  [93] &quot;thunderstorm wind 56&quot;           &quot;thunderstorm wind 59&quot;          
+##  [95] &quot;thunderstorm wind 59 mph&quot;       &quot;thunderstorm wind 59 mph.&quot;     
+##  [97] &quot;thunderstorm wind 60 mph&quot;       &quot;thunderstorm wind 65 mph&quot;      
+##  [99] &quot;thunderstorm wind 65mph&quot;        &quot;thunderstorm wind 69&quot;          
+## [101] &quot;thunderstorm wind 98 mph&quot;       &quot;thunderstorm wind g50&quot;         
+## [103] &quot;thunderstorm wind g51&quot;          &quot;thunderstorm wind g52&quot;         
+## [105] &quot;thunderstorm wind g55&quot;          &quot;thunderstorm wind g60&quot;         
+## [107] &quot;thunderstorm wind g61&quot;          &quot;thunderstorm wind trees&quot;       
+## [109] &quot;thunderstorm wind.&quot;             &quot;thunderstorm wind/ tree&quot;       
+## [111] &quot;thunderstorm wind/ trees&quot;       &quot;thunderstorm wind/awning&quot;      
+## [113] &quot;thunderstorm wind/lightning&quot;    &quot;thunderstorm winds&quot;            
+## [115] &quot;thunderstorm winds      le cen&quot; &quot;thunderstorm winds 13&quot;         
+## [117] &quot;thunderstorm winds 2&quot;           &quot;thunderstorm winds 50&quot;         
+## [119] &quot;thunderstorm winds 52&quot;          &quot;thunderstorm winds 53&quot;         
+## [121] &quot;thunderstorm winds 60&quot;          &quot;thunderstorm winds 61&quot;         
+## [123] &quot;thunderstorm winds 62&quot;          &quot;thunderstorm winds 63 mph&quot;     
+## [125] &quot;thunderstorm winds and&quot;         &quot;thunderstorm winds g&quot;          
+## [127] &quot;thunderstorm winds g60&quot;         &quot;thunderstorm winds lightning&quot;  
+## [129] &quot;thunderstorm winds small strea&quot; &quot;thunderstorm winds urban flood&quot;
+## [131] &quot;thunderstorm winds.&quot;            &quot;thunderstorm winds/ flood&quot;     
+## [133] &quot;thunderstorm winds/flash flood&quot; &quot;thunderstorm winds/flooding&quot;   
+## [135] &quot;thunderstorm winds53&quot;           &quot;thunderstorm windss&quot;           
+## [137] &quot;thunderstorm wins&quot;              &quot;thunderstorms&quot;                 
+## [139] &quot;thunderstorms wind&quot;             &quot;thunderstorms winds&quot;           
+## [141] &quot;thunderstormw&quot;                  &quot;thunderstormw 50&quot;              
+## [143] &quot;thunderstormw winds&quot;            &quot;thunderstormwinds&quot;             
+## [145] &quot;thunderstrom wind&quot;              &quot;thunderstrom winds&quot;            
+## [147] &quot;thundertorm winds&quot;              &quot;thundertsorm wind&quot;             
+## [149] &quot;thundestorm winds&quot;              &quot;thunerstorm winds&quot;             
+## [151] &quot;tropical storm&quot;                 &quot;tropical storm alberto&quot;        
+## [153] &quot;tropical storm dean&quot;            &quot;tropical storm gordon&quot;         
+## [155] &quot;tropical storm jerry&quot;           &quot;tstm wind&quot;                     
+## [157] &quot;tstm wind  (g45)&quot;               &quot;tstm wind (41)&quot;                
+## [159] &quot;tstm wind (g35)&quot;                &quot;tstm wind (g40)&quot;               
+## [161] &quot;tstm wind (g45)&quot;                &quot;tstm wind 40&quot;                  
+## [163] &quot;tstm wind 45&quot;                   &quot;tstm wind 50&quot;                  
+## [165] &quot;tstm wind 51&quot;                   &quot;tstm wind 52&quot;                  
+## [167] &quot;tstm wind 55&quot;                   &quot;tstm wind 65)&quot;                 
+## [169] &quot;tstm wind and lightning&quot;        &quot;tstm wind damage&quot;              
+## [171] &quot;tstm wind g45&quot;                  &quot;tstm wind g58&quot;                 
+## [173] &quot;tstm winds&quot;                     &quot;tstm wnd&quot;                      
+## [175] &quot;tunderstorm wind&quot;               &quot;wake low wind&quot;                 
+## [177] &quot;whirlwind&quot;                      &quot;wind&quot;                          
+## [179] &quot;wind advisory&quot;                  &quot;wind and wave&quot;                 
+## [181] &quot;wind damage&quot;                    &quot;wind gusts&quot;                    
+## [183] &quot;wind storm&quot;                     &quot;winds&quot;                         
+## [185] &quot;wnd&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;flood|stream fld|high wat&quot;, reducedData$EVTYPE, ignore.case = TRUE) &amp; 
+    is.na(reducedData$evCat)] &lt;- &quot;Flood&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Flood&quot;]))
+</code></pre>
+
+<pre><code>##  [1] &quot; coastal flood&quot;                 &quot; flash flood&quot;                  
+##  [3] &quot;beach erosion/coastal flood&quot;    &quot;beach flood&quot;                   
+##  [5] &quot;breakup flooding&quot;               &quot;coastal  flooding/erosion&quot;     
+##  [7] &quot;coastal flood&quot;                  &quot;coastal flooding&quot;              
+##  [9] &quot;coastal flooding/erosion&quot;       &quot;coastal/tidal flood&quot;           
+## [11] &quot;coastalflood&quot;                   &quot;cstl flooding/erosion&quot;         
+## [13] &quot;erosion/cstl flood&quot;             &quot;flash flood&quot;                   
+## [15] &quot;flash flood landslides&quot;         &quot;flash flood/&quot;                  
+## [17] &quot;flash flood/ flood&quot;             &quot;flash flood/ street&quot;           
+## [19] &quot;flash flood/flood&quot;              &quot;flash flood/landslide&quot;         
+## [21] &quot;flash flooding&quot;                 &quot;flash flooding/flood&quot;          
+## [23] &quot;flash floods&quot;                   &quot;flood&quot;                         
+## [25] &quot;flood flash&quot;                    &quot;flood flood/flash&quot;             
+## [27] &quot;flood watch/&quot;                   &quot;flood/flash&quot;                   
+## [29] &quot;flood/flash flood&quot;              &quot;flood/flash flooding&quot;          
+## [31] &quot;flood/flash/flood&quot;              &quot;flood/flashflood&quot;              
+## [33] &quot;flood/river flood&quot;              &quot;flooding&quot;                      
+## [35] &quot;floods&quot;                         &quot;heavy surf coastal flooding&quot;   
+## [37] &quot;high water&quot;                     &quot;highway flooding&quot;              
+## [39] &quot;lake flood&quot;                     &quot;lakeshore flood&quot;               
+## [41] &quot;landslide/urban flood&quot;          &quot;local flash flood&quot;             
+## [43] &quot;local flood&quot;                    &quot;major flood&quot;                   
+## [45] &quot;minor flood&quot;                    &quot;minor flooding&quot;                
+## [47] &quot;mud slides urban flooding&quot;      &quot;river and stream flood&quot;        
+## [49] &quot;river flood&quot;                    &quot;river flooding&quot;                
+## [51] &quot;rural flood&quot;                    &quot;small stream and urban flood&quot;  
+## [53] &quot;small stream and urban floodin&quot; &quot;small stream flood&quot;            
+## [55] &quot;small stream flooding&quot;          &quot;small stream urban flood&quot;      
+## [57] &quot;small stream/urban flood&quot;       &quot;sml stream fld&quot;                
+## [59] &quot;stream flooding&quot;                &quot;street flood&quot;                  
+## [61] &quot;street flooding&quot;                &quot;tidal flood&quot;                   
+## [63] &quot;tidal flooding&quot;                 &quot;urban and small stream flood&quot;  
+## [65] &quot;urban and small stream floodin&quot; &quot;urban flood&quot;                   
+## [67] &quot;urban flood landslide&quot;          &quot;urban flooding&quot;                
+## [69] &quot;urban floods&quot;                   &quot;urban small stream flood&quot;      
+## [71] &quot;urban/small flooding&quot;           &quot;urban/small stream  flood&quot;     
+## [73] &quot;urban/small stream flood&quot;       &quot;urban/small stream flooding&quot;   
+## [75] &quot;urban/sml stream fld&quot;           &quot;urban/sml stream fldg&quot;         
+## [77] &quot;urban/street flooding&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;tide|rip cur|tsunami&quot;, reducedData$EVTYPE, ignore.case = TRUE) &amp; 
+    is.na(reducedData$evCat)] &lt;- &quot;Marine&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Marine&quot;]))
+</code></pre>
+
+<pre><code>##  [1] &quot;astronomical high tide&quot;  &quot;astronomical low tide&quot;  
+##  [3] &quot;blow-out tide&quot;           &quot;blow-out tides&quot;         
+##  [5] &quot;high tides&quot;              &quot;rip current&quot;            
+##  [7] &quot;rip currents&quot;            &quot;rip currents heavy surf&quot;
+##  [9] &quot;rip currents/heavy surf&quot; &quot;tsunami&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;lightn&quot;, reducedData$EVTYPE, ignore.case = TRUE) &amp; 
+    is.na(reducedData$evCat)] &lt;- &quot;Lightning&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Lightning&quot;]))
+</code></pre>
+
+<pre><code>## [1] &quot; lightning&quot;         &quot;lightning&quot;          &quot;lightning  wauseon&quot;
+## [4] &quot;lightning damage&quot;   &quot;lightning fire&quot;     &quot;lightning injury&quot;  
+## [7] &quot;lightning.&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;warm|hot|heat|fire|hypertherm&quot;, reducedData$EVTYPE, 
+    ignore.case = TRUE) &amp; is.na(reducedData$evCat)] &lt;- &quot;Heat&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Heat&quot;]))
+</code></pre>
+
+<pre><code>##  [1] &quot;abnormal warmth&quot;           &quot;brush fire&quot;               
+##  [3] &quot;brush fires&quot;               &quot;drought/excessive heat&quot;   
+##  [5] &quot;dry hot weather&quot;           &quot;excessive heat&quot;           
+##  [7] &quot;excessive heat/drought&quot;    &quot;extreme heat&quot;             
+##  [9] &quot;forest fires&quot;              &quot;grass fires&quot;              
+## [11] &quot;heat&quot;                      &quot;heat drought&quot;             
+## [13] &quot;heat wave&quot;                 &quot;heat wave drought&quot;        
+## [15] &quot;heat waves&quot;                &quot;heat/drought&quot;             
+## [17] &quot;heatburst&quot;                 &quot;hot and dry&quot;              
+## [19] &quot;hot pattern&quot;               &quot;hot spell&quot;                
+## [21] &quot;hot weather&quot;               &quot;hot/dry pattern&quot;          
+## [23] &quot;hyperthermia/exposure&quot;     &quot;prolong warmth&quot;           
+## [25] &quot;record heat&quot;               &quot;record heat wave&quot;         
+## [27] &quot;record warm&quot;               &quot;record warm temps.&quot;       
+## [29] &quot;record warmth&quot;             &quot;record/excessive heat&quot;    
+## [31] &quot;red flag fire wx&quot;          &quot;unseasonably hot&quot;         
+## [33] &quot;unseasonably warm&quot;         &quot;unseasonably warm &amp; wet&quot;  
+## [35] &quot;unseasonably warm and dry&quot; &quot;unseasonably warm year&quot;   
+## [37] &quot;unseasonably warm/wet&quot;     &quot;unusual warmth&quot;           
+## [39] &quot;unusual/record warmth&quot;     &quot;unusually warm&quot;           
+## [41] &quot;very warm&quot;                 &quot;warm dry conditions&quot;      
+## [43] &quot;warm weather&quot;              &quot;wild fires&quot;               
+## [45] &quot;wild/forest fire&quot;          &quot;wild/forest fires&quot;        
+## [47] &quot;wildfire&quot;                  &quot;wildfires&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[grepl(&quot;dry|drought&quot;, reducedData$EVTYPE, ignore.case = TRUE) &amp; 
+    is.na(reducedData$evCat)] &lt;- &quot;Dry&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Dry&quot;]))
+</code></pre>
+
+<pre><code>##  [1] &quot;abnormally dry&quot;       &quot;drought&quot;              &quot;dry&quot;                 
+##  [4] &quot;dry conditions&quot;       &quot;dry microburst&quot;       &quot;dry microburst 50&quot;   
+##  [7] &quot;dry microburst 53&quot;    &quot;dry microburst 58&quot;    &quot;dry microburst 61&quot;   
+## [10] &quot;dry microburst 84&quot;    &quot;dry pattern&quot;          &quot;dry spell&quot;           
+## [13] &quot;dry weather&quot;          &quot;dryness&quot;              &quot;excessively dry&quot;     
+## [16] &quot;mild and dry pattern&quot; &quot;mild/dry pattern&quot;     &quot;record dry month&quot;    
+## [19] &quot;record dryness&quot;       &quot;unseasonably dry&quot;     &quot;very dry&quot;
+</code></pre>
+
+<pre><code class="r">reducedData$evCat[is.na(reducedData$evCat)] &lt;- &quot;Other&quot;
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == &quot;Other&quot;]))
+</code></pre>
+
+<pre><code>##   [1] &quot;   high surf advisory&quot;      &quot;?&quot;                         
+##   [3] &quot;abnormally wet&quot;             &quot;apache county&quot;             
+##   [5] &quot;avalance&quot;                   &quot;avalanche&quot;                 
+##   [7] &quot;beach erosin&quot;               &quot;beach erosion&quot;             
+##   [9] &quot;below normal precipitation&quot; &quot;blowing dust&quot;              
+##  [11] &quot;coastal erosion&quot;            &quot;coastal surge&quot;             
+##  [13] &quot;cool and wet&quot;               &quot;cool spell&quot;                
+##  [15] &quot;dam break&quot;                  &quot;dam failure&quot;               
+##  [17] &quot;dense fog&quot;                  &quot;dense smoke&quot;               
+##  [19] &quot;downburst&quot;                  &quot;driest month&quot;              
+##  [21] &quot;drowning&quot;                   &quot;excessive&quot;                 
+##  [23] &quot;excessive precipitation&quot;    &quot;excessive wetness&quot;         
+##  [25] &quot;extremely wet&quot;              &quot;flash floooding&quot;           
+##  [27] &quot;fog&quot;                        &quot;glaze&quot;                     
+##  [29] &quot;hazardous surf&quot;             &quot;heavy mix&quot;                 
+##  [31] &quot;heavy precipatation&quot;        &quot;heavy precipitation&quot;       
+##  [33] &quot;heavy seas&quot;                 &quot;heavy shower&quot;              
+##  [35] &quot;heavy showers&quot;              &quot;heavy surf&quot;                
+##  [37] &quot;heavy surf/high surf&quot;       &quot;heavy swells&quot;              
+##  [39] &quot;high&quot;                       &quot;high  swells&quot;              
+##  [41] &quot;high seas&quot;                  &quot;high surf&quot;                 
+##  [43] &quot;high surf advisories&quot;       &quot;high surf advisory&quot;        
+##  [45] &quot;high swells&quot;                &quot;high temperature record&quot;   
+##  [47] &quot;high waves&quot;                 &quot;landslide&quot;                 
+##  [49] &quot;landslides&quot;                 &quot;landslump&quot;                 
+##  [51] &quot;large wall cloud&quot;           &quot;lighting&quot;                  
+##  [53] &quot;ligntning&quot;                  &quot;low temperature&quot;           
+##  [55] &quot;low temperature record&quot;     &quot;marine accident&quot;           
+##  [57] &quot;marine mishap&quot;              &quot;microburst&quot;                
+##  [59] &quot;mild pattern&quot;               &quot;mixed precip&quot;              
+##  [61] &quot;mixed precipitation&quot;        &quot;monthly precipitation&quot;     
+##  [63] &quot;monthly temperature&quot;        &quot;mud slide&quot;                 
+##  [65] &quot;mud slides&quot;                 &quot;mud/rock slide&quot;            
+##  [67] &quot;mudslide&quot;                   &quot;mudslide/landslide&quot;        
+##  [69] &quot;mudslides&quot;                  &quot;no severe weather&quot;         
+##  [71] &quot;none&quot;                       &quot;normal precipitation&quot;      
+##  [73] &quot;northern lights&quot;            &quot;other&quot;                     
+##  [75] &quot;patchy dense fog&quot;           &quot;rapidly rising water&quot;      
+##  [77] &quot;record cool&quot;                &quot;record high&quot;               
+##  [79] &quot;record high temperature&quot;    &quot;record high temperatures&quot;  
+##  [81] &quot;record low&quot;                 &quot;record precipitation&quot;      
+##  [83] &quot;record temperature&quot;         &quot;record temperatures&quot;       
+##  [85] &quot;red flag criteria&quot;          &quot;remnants of floyd&quot;         
+##  [87] &quot;rock slide&quot;                 &quot;rogue wave&quot;                
+##  [89] &quot;rotating wall cloud&quot;        &quot;rough seas&quot;                
+##  [91] &quot;rough surf&quot;                 &quot;saharan dust&quot;              
+##  [93] &quot;seiche&quot;                     &quot;severe turbulence&quot;         
+##  [95] &quot;sleet&quot;                      &quot;small stream&quot;              
+##  [97] &quot;small stream and&quot;           &quot;smoke&quot;                     
+##  [99] &quot;southeast&quot;                  &quot;temperature record&quot;        
+## [101] &quot;torndao&quot;                    &quot;tropical depression&quot;       
+## [103] &quot;tstm&quot;                       &quot;tstmw&quot;                     
+## [105] &quot;typhoon&quot;                    &quot;unseasonably cool&quot;         
+## [107] &quot;unseasonably cool &amp; wet&quot;    &quot;unseasonably wet&quot;          
+## [109] &quot;unseasonal low temp&quot;        &quot;urban and small&quot;           
+## [111] &quot;urban and small stream&quot;     &quot;urban small&quot;               
+## [113] &quot;urban/small&quot;                &quot;urban/small stream&quot;        
+## [115] &quot;urban/small strm fldg&quot;      &quot;vog&quot;                       
+## [117] &quot;volcanic ash&quot;               &quot;volcanic ash plume&quot;        
+## [119] &quot;volcanic ashfall&quot;           &quot;volcanic eruption&quot;         
+## [121] &quot;wall cloud&quot;                 &quot;wet micoburst&quot;             
+## [123] &quot;wet microburst&quot;             &quot;wet month&quot;                 
+## [125] &quot;wet weather&quot;                &quot;wet year&quot;
+</code></pre>
+
+<pre><code class="r">head(reducedData)
+</code></pre>
+
+<pre><code>##    EVTYPE STATE FATALITIES INJURIES propDam cropDam year count   evCat
+## 1 tornado    AL          0       15   25000       0 1950     1 Tornado
+## 2 tornado    AL          0        0    2500       0 1950     1 Tornado
+## 3 tornado    AL          0        2   25000       0 1951     1 Tornado
+## 4 tornado    AL          0        2    2500       0 1951     1 Tornado
+## 5 tornado    AL          0        2    2500       0 1951     1 Tornado
+## 6 tornado    AL          0        6    2500       0 1951     1 Tornado
+</code></pre>
+
+<p>In order to be analysed further, the data is aggregated by event category, delivering the subsequent table:</p>
+
+<pre><code class="r">aggregatedData &lt;- aggregate(with(reducedData, list(count, FATALITIES, INJURIES, 
+    propDam, cropDam)), with(reducedData, list(evCat)), sum)
+colnames(aggregatedData) &lt;- colnames(reducedData)[c(9, 8, 3:6)]
+View(aggregatedData)
+</code></pre>
+
+<h2>Results</h2>
+
+<p>From the table above and the following graphs, it can be seen that</p>
+
+<ul>
+<li>the vast majority of recorded events are in the categories for wind (~360k) and hail (~290k) categories</li>
+<li>the most devastating categories with respect to property damages are floods (~167 bn USD) and wind (~157 bn USD)</li>
+<li>the most devastating categories with respect to crop damages are dryness (~14 bn) and floods (~12 bn)</li>
+<li>the most devastating category with respect to both fatalities and injuries is tornadoes (~5600 dead, ~90000 injured)</li>
+</ul>
+
+<pre><code class="r">library(ggplot2)
+library(gridExtra)
+</code></pre>
+
+<pre><code>## Loading required package: grid
+</code></pre>
+
+<pre><code class="r">library(scales)
+plotEvt &lt;- ggplot(aggregatedData, aes(x = evCat, y = count, fill = evCat)) + 
+    geom_bar(stat = &quot;identity&quot;) + theme_bw() + guides(fill = FALSE) + labs(title = &quot;Recorded Events between 1950 and 2011&quot;, 
+    x = &quot;Event category&quot;, y = &quot;Events in 1&#39;000s&quot;) + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip() + scale_y_continuous(labels = function(x) {
+    x/10^3
+})
+plotEvt
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk plotResults"/> </p>
+
+<pre><code class="r">
+plotPropDam &lt;- ggplot(aggregatedData, aes(x = evCat, y = propDam, fill = evCat)) + 
+    geom_bar(stat = &quot;identity&quot;) + theme_bw() + guides(fill = FALSE) + labs(title = &quot;Property damage in bn USD&quot;, 
+    x = &quot;Event category&quot;, y = &quot;&quot;) + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip() + scale_y_continuous(labels = function(x) {
+    x/10^9
+})
+plotCropDam &lt;- ggplot(aggregatedData, aes(x = evCat, y = cropDam, fill = evCat)) + 
+    geom_bar(stat = &quot;identity&quot;) + theme_bw() + guides(fill = FALSE) + labs(title = &quot;Crop damage in bn USD&quot;, 
+    x = &quot;Event category&quot;, y = &quot;&quot;) + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip() + scale_y_continuous(labels = function(x) {
+    x/10^9
+})
+
+plotFat &lt;- ggplot(aggregatedData, aes(x = evCat, y = FATALITIES, fill = evCat)) + 
+    geom_bar(stat = &quot;identity&quot;) + theme_bw() + guides(fill = FALSE) + labs(title = &quot;Fatalities&quot;, 
+    x = &quot;Event category&quot;, y = &quot;&quot;) + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip()
+plotInj &lt;- ggplot(aggregatedData, aes(x = evCat, y = INJURIES, fill = evCat)) + 
+    geom_bar(stat = &quot;identity&quot;) + theme_bw() + guides(fill = FALSE) + labs(title = &quot;Injuries&quot;, 
+    x = &quot;Event category&quot;, y = &quot;&quot;) + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip()
+grid.arrange(plotPropDam, plotCropDam, plotFat, plotInj, ncol = 2, nrow = 2)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk plotResults"/> </p>
+
+<h2>Used external resources</h2>
+
+<ul>
+<li>Storm data used for analysis: <a href="https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2">https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2</a></li>
+</ul>
+
+</body>
+
+</html>
+
