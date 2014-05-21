@@ -552,25 +552,34 @@ reducedData <- reducedData[!grepl("summa", reducedData$EVTYPE, ignore.case = TRU
 
 The remaining events are assigned to broader categories
 
+mainly **Wind** related events
 * Tornadoes, also containing gustnados, funnel clouds, water spouts and dust devils
+* Hurricanes
 * Blizzards, also containing winter storms and ice storms
-* Cold related events such as snow, ice, general winter events, frost, etc.
-* Hail
+* Other winds and storms  
+
+mainly **Water** related events
 * Rain
-* Wind, including storms and hurricanes
+* Hail
 * Floods
-* Marine, containing rip currents, tides and tsunamis
+* Marine, containing rip currents, tides and tsunamis  
+
+mainly **Temperature** related events
+* Cold related events such as snow, ice, general winter events, frost, etc.
+* Heat related events, including Fires  
+
+**other** events
 * Lightning
-* Heat related events, including Fires
 * Dryness
 * Other events  
 
-This categorization is constructed as disjunct, i.e. any event is assigned to exactly one of these categories in the above order. The assignment is performed by searching key strings in the EVTYPE variable. After this grouping, only a small proportion of the original data could not be assigned to any of the categories, which means that it was by definition assigned to category Other. The following tables show which event was assigned to which category.
+This categorization is constructed as disjunct, i.e. any event is assigned to exactly one of these categories in the above order. The assignment is performed by searching key strings in the EVTYPE variable. After this grouping, only a small proportion of the original data could not be assigned to any of the categories, which means that it was by definition assigned to category Other. The following tables show which event was assigned to which category, also covering most of the misspelled events.
 
 ```r
 reducedData$evCat <- NA
-reducedData$evCat[grepl("torna|gustna|funnel|spout|dust dev", reducedData$EVTYPE, 
+reducedData$evCat[grepl("torna|tornda|gustna|funnel|spout|dust dev", reducedData$EVTYPE, 
     ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Tornado"
+
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Tornado"]))
 ```
 
@@ -589,17 +598,33 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Tornado"]))
 ## [23] "tornado f2"                     "tornado f3"                    
 ## [25] "tornado/waterspout"             "tornadoes"                     
 ## [27] "tornadoes, tstm wind, hail"     "tornados"                      
-## [29] "wall cloud/funnel cloud"        "water spout"                   
-## [31] "waterspout"                     "waterspout-"                   
-## [33] "waterspout-tornado"             "waterspout funnel cloud"       
-## [35] "waterspout tornado"             "waterspout/"                   
-## [37] "waterspout/ tornado"            "waterspout/tornado"            
-## [39] "waterspouts"                    "wayterspout"
+## [29] "torndao"                        "wall cloud/funnel cloud"       
+## [31] "water spout"                    "waterspout"                    
+## [33] "waterspout-"                    "waterspout-tornado"            
+## [35] "waterspout funnel cloud"        "waterspout tornado"            
+## [37] "waterspout/"                    "waterspout/ tornado"           
+## [39] "waterspout/tornado"             "waterspouts"                   
+## [41] "wayterspout"
 ```
 
 ```r
+reducedData$evCat[grepl("hurr", reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Hurricane"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Hurricane"]))
+```
+
+```
+##  [1] "hurricane"                  "hurricane-generated swells"
+##  [3] "hurricane edouard"          "hurricane emily"           
+##  [5] "hurricane erin"             "hurricane felix"           
+##  [7] "hurricane gordon"           "hurricane opal"            
+##  [9] "hurricane opal/high winds"  "hurricane/typhoon"
+```
+
+```r
+
 reducedData$evCat[grepl("blitz|bliz|winter sto|ice sto", reducedData$EVTYPE, 
     ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Blizzard"
+
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Blizzard"]))
 ```
 
@@ -623,278 +648,195 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Blizzard"]))
 ```
 
 ```r
-reducedData$evCat[grepl("snow|ice|icy|freez|wint|cold|frost|chill|hypotherm", 
-    reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Cold"
-levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Cold"]))
-```
-
-```
-##   [1] "accumulated snowfall"           "agricultural freeze"           
-##   [3] "bitter wind chill"              "bitter wind chill temperatures"
-##   [5] "black ice"                      "blowing snow"                  
-##   [7] "blowing snow- extreme wind chi" "blowing snow & extreme wind ch"
-##   [9] "blowing snow/extreme wind chil" "cold"                          
-##  [11] "cold and frost"                 "cold and snow"                 
-##  [13] "cold and wet conditions"        "cold temperature"              
-##  [15] "cold temperatures"              "cold wave"                     
-##  [17] "cold weather"                   "cold wind chill temperatures"  
-##  [19] "cold/wind chill"                "cold/winds"                    
-##  [21] "damaging freeze"                "drifting snow"                 
-##  [23] "early freeze"                   "early frost"                   
-##  [25] "early snow"                     "early snowfall"                
-##  [27] "excessive cold"                 "excessive snow"                
-##  [29] "extended cold"                  "extreme cold"                  
-##  [31] "extreme cold/wind chill"        "extreme wind chill"            
-##  [33] "extreme wind chill/blowing sno" "extreme wind chills"           
-##  [35] "extreme windchill"              "extreme windchill temperatures"
-##  [37] "extreme/record cold"            "falling snow/ice"              
-##  [39] "first frost"                    "first snow"                    
-##  [41] "flash flood from ice jams"      "fog and cold temperatures"     
-##  [43] "freeze"                         "freezing drizzle"              
-##  [45] "freezing drizzle and freezing"  "freezing fog"                  
-##  [47] "freezing rain"                  "freezing rain and sleet"       
-##  [49] "freezing rain and snow"         "freezing rain sleet and"       
-##  [51] "freezing rain sleet and light"  "freezing rain/sleet"           
-##  [53] "freezing rain/snow"             "freezing spray"                
-##  [55] "frost"                          "frost/freeze"                  
-##  [57] "frost\\freeze"                  "glaze ice"                     
-##  [59] "hail/icy roads"                 "hard freeze"                   
-##  [61] "heavy lake snow"                "heavy rain/snow"               
-##  [63] "heavy snow"                     "heavy snow-squalls"            
-##  [65] "heavy snow   freezing rain"     "heavy snow & ice"              
-##  [67] "heavy snow and"                 "heavy snow and high winds"     
-##  [69] "heavy snow and ice"             "heavy snow and strong winds"   
-##  [71] "heavy snow andblowing snow"     "heavy snow shower"             
-##  [73] "heavy snow squalls"             "heavy snow/blowing snow"       
-##  [75] "heavy snow/freezing rain"       "heavy snow/high"               
-##  [77] "heavy snow/high wind"           "heavy snow/high winds"         
-##  [79] "heavy snow/high winds & flood"  "heavy snow/high winds/freezing"
-##  [81] "heavy snow/ice"                 "heavy snow/sleet"              
-##  [83] "heavy snow/squalls"             "heavy snow/wind"               
-##  [85] "heavy snowpack"                 "heavy wet snow"                
-##  [87] "high wind and heavy snow"       "high wind/heavy snow"          
-##  [89] "high wind/low wind chill"       "high wind/wind chill"          
-##  [91] "high winds and wind chill"      "high winds/cold"               
-##  [93] "high winds/snow"                "hypothermia"                   
-##  [95] "hypothermia/exposure"           "ice"                           
-##  [97] "ice and snow"                   "ice floes"                     
-##  [99] "ice fog"                        "ice jam"                       
-## [101] "ice jam flood (minor"           "ice jam flooding"              
-## [103] "ice on road"                    "ice pellets"                   
-## [105] "ice roads"                      "ice/snow"                      
-## [107] "ice/strong winds"               "icy roads"                     
-## [109] "lack of snow"                   "lake-effect snow"              
-## [111] "lake effect snow"               "late-season snowfall"          
-## [113] "late freeze"                    "late season snow"              
-## [115] "late season snowfall"           "late snow"                     
-## [117] "light freezing rain"            "light snow"                    
-## [119] "light snow and sleet"           "light snow/flurries"           
-## [121] "light snow/freezing precip"     "light snowfall"                
-## [123] "low wind chill"                 "moderate snow"                 
-## [125] "moderate snowfall"              "monthly snowfall"              
-## [127] "mountain snows"                 "near record snow"              
-## [129] "patchy ice"                     "prolong cold"                  
-## [131] "prolong cold/snow"              "rain/snow"                     
-## [133] "record  cold"                   "record cold"                   
-## [135] "record cold and high wind"      "record cold/frost"             
-## [137] "record may snow"                "record snow"                   
-## [139] "record snow/cold"               "record snowfall"               
-## [141] "record winter snow"             "seasonal snowfall"             
-## [143] "severe cold"                    "sleet & freezing rain"         
-## [145] "sleet/freezing rain"            "sleet/rain/snow"               
-## [147] "sleet/snow"                     "snow"                          
-## [149] "snow- high wind- wind chill"    "snow accumulation"             
-## [151] "snow advisory"                  "snow and cold"                 
-## [153] "snow and heavy snow"            "snow and ice"                  
-## [155] "snow and sleet"                 "snow and wind"                 
-## [157] "snow drought"                   "snow freezing rain"            
-## [159] "snow showers"                   "snow sleet"                    
-## [161] "snow squall"                    "snow squalls"                  
-## [163] "snow/ bitter cold"              "snow/ ice"                     
-## [165] "snow/blowing snow"              "snow/cold"                     
-## [167] "snow/freezing rain"             "snow/heavy snow"               
-## [169] "snow/high winds"                "snow/ice"                      
-## [171] "snow/rain"                      "snow/rain/sleet"               
-## [173] "snow/sleet"                     "snow/sleet/freezing rain"      
-## [175] "snow/sleet/rain"                "snow\\cold"                    
-## [177] "snowfall record"                "snowmelt flooding"             
-## [179] "snowstorm"                      "thundersnow"                   
-## [181] "thundersnow shower"             "unseasonable cold"             
-## [183] "unseasonably cold"              "unusually cold"                
-## [185] "unusually late snow"            "wet snow"                      
-## [187] "wind chill"                     "wind chill/high wind"          
-## [189] "winter mix"                     "winter weather"                
-## [191] "winter weather mix"             "winter weather/mix"            
-## [193] "wintery mix"                    "wintry mix"
-```
-
-```r
-reducedData$evCat[grepl("hail", reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Hail"
-levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Hail"]))
-```
-
-```
-##  [1] "deep hail"                "gusty wind/hail"         
-##  [3] "hail"                     "hail 0.75"               
-##  [5] "hail 0.88"                "hail 075"                
-##  [7] "hail 088"                 "hail 1.00"               
-##  [9] "hail 1.75"                "hail 1.75)"              
-## [11] "hail 100"                 "hail 125"                
-## [13] "hail 150"                 "hail 175"                
-## [15] "hail 200"                 "hail 225"                
-## [17] "hail 275"                 "hail 450"                
-## [19] "hail 75"                  "hail 80"                 
-## [21] "hail 88"                  "hail aloft"              
-## [23] "hail damage"              "hail flooding"           
-## [25] "hail storm"               "hail(0.75)"              
-## [27] "hail/wind"                "hail/winds"              
-## [29] "hailstorm"                "hailstorms"              
-## [31] "late season hail"         "marine hail"             
-## [33] "non severe hail"          "small hail"              
-## [35] "thunderstorm hail"        "thunderstorm wind/hail"  
-## [37] "thunderstorm winds hail"  "thunderstorm winds/ hail"
-## [39] "thunderstorm winds/hail"  "thunderstorm windshail"  
-## [41] "tstm wind/hail"           "wind/hail"
-```
-
-```r
-reducedData$evCat[grepl("rain", reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Rain"
-levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Rain"]))
-```
-
-```
-##  [1] "early rain"                     "excessive rain"                
-##  [3] "excessive rainfall"             "flash flood - heavy rain"      
-##  [5] "flash flood/heavy rain"         "flood & heavy rain"            
-##  [7] "flood/rain/wind"                "flood/rain/winds"              
-##  [9] "flooding/heavy rain"            "gusty wind/hvy rain"           
-## [11] "gusty wind/rain"                "heavy rain"                    
-## [13] "heavy rain and flood"           "heavy rain and wind"           
-## [15] "heavy rain effects"             "heavy rain/flooding"           
-## [17] "heavy rain/high surf"           "heavy rain/lightning"          
-## [19] "heavy rain/mudslides/flood"     "heavy rain/severe weather"     
-## [21] "heavy rain/small stream urban"  "heavy rain/urban flood"        
-## [23] "heavy rain/wind"                "heavy rain; urban flood winds;"
-## [25] "heavy rainfall"                 "heavy rains"                   
-## [27] "heavy rains/flooding"           "high winds heavy rains"        
-## [29] "high winds/heavy rain"          "hvy rain"                      
-## [31] "lightning and heavy rain"       "lightning/heavy rain"          
-## [33] "locally heavy rain"             "monthly rainfall"              
-## [35] "prolonged rain"                 "rain"                          
-## [37] "rain (heavy)"                   "rain and wind"                 
-## [39] "rain damage"                    "rain/wind"                     
-## [41] "rainstorm"                      "record low rainfall"           
-## [43] "record rainfall"                "record/excessive rainfall"     
-## [45] "thunderstorm winds heavy rain"  "thunderstorm winds/heavy rain" 
-## [47] "torrential rain"                "torrential rainfall"           
-## [49] "tstm heavy rain"                "unseasonal rain"
-```
-
-```r
-reducedData$evCat[grepl("wind|wnd|storm|hurr", reducedData$EVTYPE, ignore.case = TRUE) & 
+reducedData$evCat[grepl("wind|wnd|storm", reducedData$EVTYPE, ignore.case = TRUE) & 
     is.na(reducedData$evCat)] <- "Wind"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Wind"]))
 ```
 
 ```
 ##   [1] " tstm wind"                     " tstm wind (g45)"              
-##   [3] " wind"                          "coastal storm"                 
-##   [5] "coastalstorm"                   "downburst winds"               
-##   [7] "dry microburst winds"           "dry mircoburst winds"          
-##   [9] "dust storm"                     "dust storm/high winds"         
-##  [11] "duststorm"                      "flash flood winds"             
-##  [13] "flash flooding/thunderstorm wi" "flood/strong wind"             
-##  [15] "gradient wind"                  "gradient winds"                
-##  [17] "gusty lake wind"                "gusty thunderstorm wind"       
-##  [19] "gusty thunderstorm winds"       "gusty wind"                    
-##  [21] "gusty winds"                    "heavy surf and wind"           
-##  [23] "high  winds"                    "high wind"                     
-##  [25] "high wind (g40)"                "high wind 48"                  
-##  [27] "high wind 63"                   "high wind 70"                  
-##  [29] "high wind and high tides"       "high wind and seas"            
-##  [31] "high wind damage"               "high wind/seas"                
-##  [33] "high winds"                     "high winds 55"                 
-##  [35] "high winds 57"                  "high winds 58"                 
-##  [37] "high winds 63"                  "high winds 66"                 
-##  [39] "high winds 67"                  "high winds 73"                 
-##  [41] "high winds 76"                  "high winds 80"                 
-##  [43] "high winds 82"                  "high winds dust storm"         
-##  [45] "high winds/"                    "high winds/coastal flood"      
-##  [47] "high winds/flooding"            "hurricane"                     
-##  [49] "hurricane-generated swells"     "hurricane edouard"             
-##  [51] "hurricane emily"                "hurricane erin"                
-##  [53] "hurricane felix"                "hurricane gordon"              
-##  [55] "hurricane opal"                 "hurricane opal/high winds"     
-##  [57] "hurricane/typhoon"              "lightning and thunderstorm win"
-##  [59] "lightning and winds"            "lightning thunderstorm winds"  
-##  [61] "lightning thunderstorm windss"  "marine high wind"              
-##  [63] "marine strong wind"             "marine thunderstorm wind"      
-##  [65] "marine tstm wind"               "metro storm, may 26"           
-##  [67] "microburst winds"               "non-severe wind damage"        
-##  [69] "non-tstm wind"                  "non tstm wind"                 
-##  [71] "severe thunderstorm"            "severe thunderstorm winds"     
-##  [73] "severe thunderstorms"           "sleet storm"                   
-##  [75] "storm force winds"              "storm surge"                   
-##  [77] "storm surge/tide"               "strong wind"                   
-##  [79] "strong wind gust"               "strong winds"                  
-##  [81] "thuderstorm winds"              "thundeerstorm winds"           
-##  [83] "thunderestorm winds"            "thunderstorm"                  
-##  [85] "thunderstorm  winds"            "thunderstorm damage"           
-##  [87] "thunderstorm damage to"         "thunderstorm w inds"           
-##  [89] "thunderstorm wind"              "thunderstorm wind (g40)"       
-##  [91] "thunderstorm wind 50"           "thunderstorm wind 52"          
-##  [93] "thunderstorm wind 56"           "thunderstorm wind 59"          
-##  [95] "thunderstorm wind 59 mph"       "thunderstorm wind 59 mph."     
-##  [97] "thunderstorm wind 60 mph"       "thunderstorm wind 65 mph"      
-##  [99] "thunderstorm wind 65mph"        "thunderstorm wind 69"          
-## [101] "thunderstorm wind 98 mph"       "thunderstorm wind g50"         
-## [103] "thunderstorm wind g51"          "thunderstorm wind g52"         
-## [105] "thunderstorm wind g55"          "thunderstorm wind g60"         
-## [107] "thunderstorm wind g61"          "thunderstorm wind trees"       
-## [109] "thunderstorm wind."             "thunderstorm wind/ tree"       
-## [111] "thunderstorm wind/ trees"       "thunderstorm wind/awning"      
-## [113] "thunderstorm wind/lightning"    "thunderstorm winds"            
-## [115] "thunderstorm winds      le cen" "thunderstorm winds 13"         
-## [117] "thunderstorm winds 2"           "thunderstorm winds 50"         
-## [119] "thunderstorm winds 52"          "thunderstorm winds 53"         
-## [121] "thunderstorm winds 60"          "thunderstorm winds 61"         
-## [123] "thunderstorm winds 62"          "thunderstorm winds 63 mph"     
-## [125] "thunderstorm winds and"         "thunderstorm winds g"          
-## [127] "thunderstorm winds g60"         "thunderstorm winds lightning"  
-## [129] "thunderstorm winds small strea" "thunderstorm winds urban flood"
-## [131] "thunderstorm winds."            "thunderstorm winds/ flood"     
-## [133] "thunderstorm winds/flash flood" "thunderstorm winds/flooding"   
-## [135] "thunderstorm winds53"           "thunderstorm windss"           
-## [137] "thunderstorm wins"              "thunderstorms"                 
-## [139] "thunderstorms wind"             "thunderstorms winds"           
-## [141] "thunderstormw"                  "thunderstormw 50"              
-## [143] "thunderstormw winds"            "thunderstormwinds"             
-## [145] "thunderstrom wind"              "thunderstrom winds"            
-## [147] "thundertorm winds"              "thundertsorm wind"             
-## [149] "thundestorm winds"              "thunerstorm winds"             
-## [151] "tropical storm"                 "tropical storm alberto"        
-## [153] "tropical storm dean"            "tropical storm gordon"         
-## [155] "tropical storm jerry"           "tstm wind"                     
-## [157] "tstm wind  (g45)"               "tstm wind (41)"                
-## [159] "tstm wind (g35)"                "tstm wind (g40)"               
-## [161] "tstm wind (g45)"                "tstm wind 40"                  
-## [163] "tstm wind 45"                   "tstm wind 50"                  
-## [165] "tstm wind 51"                   "tstm wind 52"                  
-## [167] "tstm wind 55"                   "tstm wind 65)"                 
-## [169] "tstm wind and lightning"        "tstm wind damage"              
-## [171] "tstm wind g45"                  "tstm wind g58"                 
-## [173] "tstm winds"                     "tstm wnd"                      
-## [175] "tunderstorm wind"               "wake low wind"                 
-## [177] "whirlwind"                      "wind"                          
-## [179] "wind advisory"                  "wind and wave"                 
-## [181] "wind damage"                    "wind gusts"                    
-## [183] "wind storm"                     "winds"                         
-## [185] "wnd"
+##   [3] " wind"                          "bitter wind chill"             
+##   [5] "bitter wind chill temperatures" "blowing snow- extreme wind chi"
+##   [7] "blowing snow & extreme wind ch" "blowing snow/extreme wind chil"
+##   [9] "coastal storm"                  "coastalstorm"                  
+##  [11] "cold wind chill temperatures"   "cold/wind chill"               
+##  [13] "cold/winds"                     "downburst winds"               
+##  [15] "dry microburst winds"           "dry mircoburst winds"          
+##  [17] "dust storm"                     "dust storm/high winds"         
+##  [19] "duststorm"                      "extreme cold/wind chill"       
+##  [21] "extreme wind chill"             "extreme wind chill/blowing sno"
+##  [23] "extreme wind chills"            "extreme windchill"             
+##  [25] "extreme windchill temperatures" "flash flood winds"             
+##  [27] "flash flooding/thunderstorm wi" "flood/rain/wind"               
+##  [29] "flood/rain/winds"               "flood/strong wind"             
+##  [31] "gradient wind"                  "gradient winds"                
+##  [33] "gusty lake wind"                "gusty thunderstorm wind"       
+##  [35] "gusty thunderstorm winds"       "gusty wind"                    
+##  [37] "gusty wind/hail"                "gusty wind/hvy rain"           
+##  [39] "gusty wind/rain"                "gusty winds"                   
+##  [41] "hail storm"                     "hail/wind"                     
+##  [43] "hail/winds"                     "hailstorm"                     
+##  [45] "hailstorms"                     "heavy rain and wind"           
+##  [47] "heavy rain/wind"                "heavy rain; urban flood winds;"
+##  [49] "heavy snow and high winds"      "heavy snow and strong winds"   
+##  [51] "heavy snow/high wind"           "heavy snow/high winds"         
+##  [53] "heavy snow/high winds & flood"  "heavy snow/high winds/freezing"
+##  [55] "heavy snow/wind"                "heavy surf and wind"           
+##  [57] "high  winds"                    "high wind"                     
+##  [59] "high wind (g40)"                "high wind 48"                  
+##  [61] "high wind 63"                   "high wind 70"                  
+##  [63] "high wind and heavy snow"       "high wind and high tides"      
+##  [65] "high wind and seas"             "high wind damage"              
+##  [67] "high wind/heavy snow"           "high wind/low wind chill"      
+##  [69] "high wind/seas"                 "high wind/wind chill"          
+##  [71] "high winds"                     "high winds 55"                 
+##  [73] "high winds 57"                  "high winds 58"                 
+##  [75] "high winds 63"                  "high winds 66"                 
+##  [77] "high winds 67"                  "high winds 73"                 
+##  [79] "high winds 76"                  "high winds 80"                 
+##  [81] "high winds 82"                  "high winds and wind chill"     
+##  [83] "high winds dust storm"          "high winds heavy rains"        
+##  [85] "high winds/"                    "high winds/coastal flood"      
+##  [87] "high winds/cold"                "high winds/flooding"           
+##  [89] "high winds/heavy rain"          "high winds/snow"               
+##  [91] "ice/strong winds"               "lightning and thunderstorm win"
+##  [93] "lightning and winds"            "lightning thunderstorm winds"  
+##  [95] "lightning thunderstorm windss"  "low wind chill"                
+##  [97] "marine high wind"               "marine strong wind"            
+##  [99] "marine thunderstorm wind"       "marine tstm wind"              
+## [101] "metro storm, may 26"            "microburst winds"              
+## [103] "non-severe wind damage"         "non-tstm wind"                 
+## [105] "non tstm wind"                  "rain and wind"                 
+## [107] "rain/wind"                      "rainstorm"                     
+## [109] "record cold and high wind"      "severe thunderstorm"           
+## [111] "severe thunderstorm winds"      "severe thunderstorms"          
+## [113] "sleet storm"                    "snow- high wind- wind chill"   
+## [115] "snow and wind"                  "snow/high winds"               
+## [117] "snowstorm"                      "storm force winds"             
+## [119] "storm surge"                    "storm surge/tide"              
+## [121] "strong wind"                    "strong wind gust"              
+## [123] "strong winds"                   "thuderstorm winds"             
+## [125] "thundeerstorm winds"            "thunderestorm winds"           
+## [127] "thunderstorm"                   "thunderstorm  winds"           
+## [129] "thunderstorm damage"            "thunderstorm damage to"        
+## [131] "thunderstorm hail"              "thunderstorm w inds"           
+## [133] "thunderstorm wind"              "thunderstorm wind (g40)"       
+## [135] "thunderstorm wind 50"           "thunderstorm wind 52"          
+## [137] "thunderstorm wind 56"           "thunderstorm wind 59"          
+## [139] "thunderstorm wind 59 mph"       "thunderstorm wind 59 mph."     
+## [141] "thunderstorm wind 60 mph"       "thunderstorm wind 65 mph"      
+## [143] "thunderstorm wind 65mph"        "thunderstorm wind 69"          
+## [145] "thunderstorm wind 98 mph"       "thunderstorm wind g50"         
+## [147] "thunderstorm wind g51"          "thunderstorm wind g52"         
+## [149] "thunderstorm wind g55"          "thunderstorm wind g60"         
+## [151] "thunderstorm wind g61"          "thunderstorm wind trees"       
+## [153] "thunderstorm wind."             "thunderstorm wind/ tree"       
+## [155] "thunderstorm wind/ trees"       "thunderstorm wind/awning"      
+## [157] "thunderstorm wind/hail"         "thunderstorm wind/lightning"   
+## [159] "thunderstorm winds"             "thunderstorm winds      le cen"
+## [161] "thunderstorm winds 13"          "thunderstorm winds 2"          
+## [163] "thunderstorm winds 50"          "thunderstorm winds 52"         
+## [165] "thunderstorm winds 53"          "thunderstorm winds 60"         
+## [167] "thunderstorm winds 61"          "thunderstorm winds 62"         
+## [169] "thunderstorm winds 63 mph"      "thunderstorm winds and"        
+## [171] "thunderstorm winds g"           "thunderstorm winds g60"        
+## [173] "thunderstorm winds hail"        "thunderstorm winds heavy rain" 
+## [175] "thunderstorm winds lightning"   "thunderstorm winds small strea"
+## [177] "thunderstorm winds urban flood" "thunderstorm winds."           
+## [179] "thunderstorm winds/ flood"      "thunderstorm winds/ hail"      
+## [181] "thunderstorm winds/flash flood" "thunderstorm winds/flooding"   
+## [183] "thunderstorm winds/hail"        "thunderstorm winds/heavy rain" 
+## [185] "thunderstorm winds53"           "thunderstorm windshail"        
+## [187] "thunderstorm windss"            "thunderstorm wins"             
+## [189] "thunderstorms"                  "thunderstorms wind"            
+## [191] "thunderstorms winds"            "thunderstormw"                 
+## [193] "thunderstormw 50"               "thunderstormw winds"           
+## [195] "thunderstormwinds"              "thunderstrom wind"             
+## [197] "thunderstrom winds"             "thundertorm winds"             
+## [199] "thundertsorm wind"              "thundestorm winds"             
+## [201] "thunerstorm winds"              "tropical storm"                
+## [203] "tropical storm alberto"         "tropical storm dean"           
+## [205] "tropical storm gordon"          "tropical storm jerry"          
+## [207] "tstm wind"                      "tstm wind  (g45)"              
+## [209] "tstm wind (41)"                 "tstm wind (g35)"               
+## [211] "tstm wind (g40)"                "tstm wind (g45)"               
+## [213] "tstm wind 40"                   "tstm wind 45"                  
+## [215] "tstm wind 50"                   "tstm wind 51"                  
+## [217] "tstm wind 52"                   "tstm wind 55"                  
+## [219] "tstm wind 65)"                  "tstm wind and lightning"       
+## [221] "tstm wind damage"               "tstm wind g45"                 
+## [223] "tstm wind g58"                  "tstm wind/hail"                
+## [225] "tstm winds"                     "tstm wnd"                      
+## [227] "tunderstorm wind"               "wake low wind"                 
+## [229] "whirlwind"                      "wind"                          
+## [231] "wind advisory"                  "wind and wave"                 
+## [233] "wind chill"                     "wind chill/high wind"          
+## [235] "wind damage"                    "wind gusts"                    
+## [237] "wind storm"                     "wind/hail"                     
+## [239] "winds"                          "wnd"
 ```
 
 ```r
-reducedData$evCat[grepl("flood|stream fld|high wat", reducedData$EVTYPE, ignore.case = TRUE) & 
-    is.na(reducedData$evCat)] <- "Flood"
+
+reducedData$evCat[grepl("rain", reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Rain"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Rain"]))
+```
+
+```
+##  [1] "early rain"                    "excessive rain"               
+##  [3] "excessive rainfall"            "flash flood - heavy rain"     
+##  [5] "flash flood/heavy rain"        "flood & heavy rain"           
+##  [7] "flooding/heavy rain"           "freezing rain"                
+##  [9] "freezing rain and sleet"       "freezing rain and snow"       
+## [11] "freezing rain sleet and"       "freezing rain sleet and light"
+## [13] "freezing rain/sleet"           "freezing rain/snow"           
+## [15] "heavy rain"                    "heavy rain and flood"         
+## [17] "heavy rain effects"            "heavy rain/flooding"          
+## [19] "heavy rain/high surf"          "heavy rain/lightning"         
+## [21] "heavy rain/mudslides/flood"    "heavy rain/severe weather"    
+## [23] "heavy rain/small stream urban" "heavy rain/snow"              
+## [25] "heavy rain/urban flood"        "heavy rainfall"               
+## [27] "heavy rains"                   "heavy rains/flooding"         
+## [29] "heavy snow   freezing rain"    "heavy snow/freezing rain"     
+## [31] "hvy rain"                      "light freezing rain"          
+## [33] "lightning and heavy rain"      "lightning/heavy rain"         
+## [35] "locally heavy rain"            "monthly rainfall"             
+## [37] "prolonged rain"                "rain"                         
+## [39] "rain (heavy)"                  "rain damage"                  
+## [41] "rain/snow"                     "record low rainfall"          
+## [43] "record rainfall"               "record/excessive rainfall"    
+## [45] "sleet & freezing rain"         "sleet/freezing rain"          
+## [47] "sleet/rain/snow"               "snow freezing rain"           
+## [49] "snow/freezing rain"            "snow/rain"                    
+## [51] "snow/rain/sleet"               "snow/sleet/freezing rain"     
+## [53] "snow/sleet/rain"               "torrential rain"              
+## [55] "torrential rainfall"           "tstm heavy rain"              
+## [57] "unseasonal rain"
+```
+
+```r
+
+reducedData$evCat[grepl("hail", reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Hail"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Hail"]))
+```
+
+```
+##  [1] "deep hail"        "hail"             "hail 0.75"       
+##  [4] "hail 0.88"        "hail 075"         "hail 088"        
+##  [7] "hail 1.00"        "hail 1.75"        "hail 1.75)"      
+## [10] "hail 100"         "hail 125"         "hail 150"        
+## [13] "hail 175"         "hail 200"         "hail 225"        
+## [16] "hail 275"         "hail 450"         "hail 75"         
+## [19] "hail 80"          "hail 88"          "hail aloft"      
+## [22] "hail damage"      "hail flooding"    "hail(0.75)"      
+## [25] "hail/icy roads"   "late season hail" "marine hail"     
+## [28] "non severe hail"  "small hail"
+```
+
+```r
+
+reducedData$evCat[grepl("flood|stream fld|high wat|floood", reducedData$EVTYPE, 
+    ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Flood"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Flood"]))
 ```
 
@@ -906,184 +848,266 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Flood"]))
 ##  [9] "coastal flooding/erosion"       "coastal/tidal flood"           
 ## [11] "coastalflood"                   "cstl flooding/erosion"         
 ## [13] "erosion/cstl flood"             "flash flood"                   
-## [15] "flash flood landslides"         "flash flood/"                  
-## [17] "flash flood/ flood"             "flash flood/ street"           
-## [19] "flash flood/flood"              "flash flood/landslide"         
-## [21] "flash flooding"                 "flash flooding/flood"          
-## [23] "flash floods"                   "flood"                         
-## [25] "flood flash"                    "flood flood/flash"             
-## [27] "flood watch/"                   "flood/flash"                   
-## [29] "flood/flash flood"              "flood/flash flooding"          
-## [31] "flood/flash/flood"              "flood/flashflood"              
-## [33] "flood/river flood"              "flooding"                      
-## [35] "floods"                         "heavy surf coastal flooding"   
-## [37] "high water"                     "highway flooding"              
-## [39] "lake flood"                     "lakeshore flood"               
-## [41] "landslide/urban flood"          "local flash flood"             
-## [43] "local flood"                    "major flood"                   
-## [45] "minor flood"                    "minor flooding"                
-## [47] "mud slides urban flooding"      "river and stream flood"        
-## [49] "river flood"                    "river flooding"                
-## [51] "rural flood"                    "small stream and urban flood"  
-## [53] "small stream and urban floodin" "small stream flood"            
-## [55] "small stream flooding"          "small stream urban flood"      
-## [57] "small stream/urban flood"       "sml stream fld"                
-## [59] "stream flooding"                "street flood"                  
-## [61] "street flooding"                "tidal flood"                   
-## [63] "tidal flooding"                 "urban and small stream flood"  
-## [65] "urban and small stream floodin" "urban flood"                   
-## [67] "urban flood landslide"          "urban flooding"                
-## [69] "urban floods"                   "urban small stream flood"      
-## [71] "urban/small flooding"           "urban/small stream  flood"     
-## [73] "urban/small stream flood"       "urban/small stream flooding"   
-## [75] "urban/sml stream fld"           "urban/sml stream fldg"         
-## [77] "urban/street flooding"
+## [15] "flash flood from ice jams"      "flash flood landslides"        
+## [17] "flash flood/"                   "flash flood/ flood"            
+## [19] "flash flood/ street"            "flash flood/flood"             
+## [21] "flash flood/landslide"          "flash flooding"                
+## [23] "flash flooding/flood"           "flash floods"                  
+## [25] "flash floooding"                "flood"                         
+## [27] "flood flash"                    "flood flood/flash"             
+## [29] "flood watch/"                   "flood/flash"                   
+## [31] "flood/flash flood"              "flood/flash flooding"          
+## [33] "flood/flash/flood"              "flood/flashflood"              
+## [35] "flood/river flood"              "flooding"                      
+## [37] "floods"                         "heavy surf coastal flooding"   
+## [39] "high water"                     "highway flooding"              
+## [41] "ice jam flood (minor"           "ice jam flooding"              
+## [43] "lake flood"                     "lakeshore flood"               
+## [45] "landslide/urban flood"          "local flash flood"             
+## [47] "local flood"                    "major flood"                   
+## [49] "minor flood"                    "minor flooding"                
+## [51] "mud slides urban flooding"      "river and stream flood"        
+## [53] "river flood"                    "river flooding"                
+## [55] "rural flood"                    "small stream and urban flood"  
+## [57] "small stream and urban floodin" "small stream flood"            
+## [59] "small stream flooding"          "small stream urban flood"      
+## [61] "small stream/urban flood"       "sml stream fld"                
+## [63] "snowmelt flooding"              "stream flooding"               
+## [65] "street flood"                   "street flooding"               
+## [67] "tidal flood"                    "tidal flooding"                
+## [69] "urban and small stream flood"   "urban and small stream floodin"
+## [71] "urban flood"                    "urban flood landslide"         
+## [73] "urban flooding"                 "urban floods"                  
+## [75] "urban small stream flood"       "urban/small flooding"          
+## [77] "urban/small stream  flood"      "urban/small stream flood"      
+## [79] "urban/small stream flooding"    "urban/sml stream fld"          
+## [81] "urban/sml stream fldg"          "urban/street flooding"
 ```
 
 ```r
-reducedData$evCat[grepl("tide|rip cur|tsunami", reducedData$EVTYPE, ignore.case = TRUE) & 
-    is.na(reducedData$evCat)] <- "Marine"
+
+reducedData$evCat[grepl("marin|tide|rip cur|tsunami|surf|sea|beach|coast", reducedData$EVTYPE, 
+    ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Marine"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Marine"]))
 ```
 
 ```
-##  [1] "astronomical high tide"  "astronomical low tide"  
-##  [3] "blow-out tide"           "blow-out tides"         
-##  [5] "high tides"              "rip current"            
-##  [7] "rip currents"            "rip currents heavy surf"
-##  [9] "rip currents/heavy surf" "tsunami"
+##  [1] "   high surf advisory"     "astronomical high tide"   
+##  [3] "astronomical low tide"     "beach erosin"             
+##  [5] "beach erosion"             "blow-out tide"            
+##  [7] "blow-out tides"            "coastal erosion"          
+##  [9] "coastal surge"             "hazardous surf"           
+## [11] "heavy seas"                "heavy surf"               
+## [13] "heavy surf/high surf"      "high seas"                
+## [15] "high surf"                 "high surf advisories"     
+## [17] "high surf advisory"        "high tides"               
+## [19] "late-season snowfall"      "late season snow"         
+## [21] "late season snowfall"      "marine accident"          
+## [23] "marine mishap"             "rip current"              
+## [25] "rip currents"              "rip currents heavy surf"  
+## [27] "rip currents/heavy surf"   "rough seas"               
+## [29] "rough surf"                "seasonal snowfall"        
+## [31] "tsunami"                   "unseasonable cold"        
+## [33] "unseasonably cold"         "unseasonably cool"        
+## [35] "unseasonably cool & wet"   "unseasonably dry"         
+## [37] "unseasonably hot"          "unseasonably warm"        
+## [39] "unseasonably warm & wet"   "unseasonably warm and dry"
+## [41] "unseasonably warm year"    "unseasonably warm/wet"    
+## [43] "unseasonably wet"          "unseasonal low temp"
 ```
 
 ```r
-reducedData$evCat[grepl("lightn", reducedData$EVTYPE, ignore.case = TRUE) & 
-    is.na(reducedData$evCat)] <- "Lightning"
-levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Lightning"]))
+
+reducedData$evCat[grepl("snow|ice|icy|freez|wint|cold|cool|frost|chill|hypotherm", 
+    reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Cold"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Cold"]))
 ```
 
 ```
-## [1] " lightning"         "lightning"          "lightning  wauseon"
-## [4] "lightning damage"   "lightning fire"     "lightning injury"  
-## [7] "lightning."
+##   [1] "accumulated snowfall"          "agricultural freeze"          
+##   [3] "black ice"                     "blowing snow"                 
+##   [5] "cold"                          "cold and frost"               
+##   [7] "cold and snow"                 "cold and wet conditions"      
+##   [9] "cold temperature"              "cold temperatures"            
+##  [11] "cold wave"                     "cold weather"                 
+##  [13] "cool and wet"                  "cool spell"                   
+##  [15] "damaging freeze"               "drifting snow"                
+##  [17] "early freeze"                  "early frost"                  
+##  [19] "early snow"                    "early snowfall"               
+##  [21] "excessive cold"                "excessive snow"               
+##  [23] "extended cold"                 "extreme cold"                 
+##  [25] "extreme/record cold"           "falling snow/ice"             
+##  [27] "first frost"                   "first snow"                   
+##  [29] "fog and cold temperatures"     "freeze"                       
+##  [31] "freezing drizzle"              "freezing drizzle and freezing"
+##  [33] "freezing fog"                  "freezing spray"               
+##  [35] "frost"                         "frost/freeze"                 
+##  [37] "frost\\freeze"                 "glaze ice"                    
+##  [39] "hard freeze"                   "heavy lake snow"              
+##  [41] "heavy snow"                    "heavy snow-squalls"           
+##  [43] "heavy snow & ice"              "heavy snow and"               
+##  [45] "heavy snow and ice"            "heavy snow andblowing snow"   
+##  [47] "heavy snow shower"             "heavy snow squalls"           
+##  [49] "heavy snow/blowing snow"       "heavy snow/high"              
+##  [51] "heavy snow/ice"                "heavy snow/sleet"             
+##  [53] "heavy snow/squalls"            "heavy snowpack"               
+##  [55] "heavy wet snow"                "hypothermia"                  
+##  [57] "hypothermia/exposure"          "ice"                          
+##  [59] "ice and snow"                  "ice floes"                    
+##  [61] "ice fog"                       "ice jam"                      
+##  [63] "ice on road"                   "ice pellets"                  
+##  [65] "ice roads"                     "ice/snow"                     
+##  [67] "icy roads"                     "lack of snow"                 
+##  [69] "lake-effect snow"              "lake effect snow"             
+##  [71] "late freeze"                   "late snow"                    
+##  [73] "light snow"                    "light snow and sleet"         
+##  [75] "light snow/flurries"           "light snow/freezing precip"   
+##  [77] "light snowfall"                "moderate snow"                
+##  [79] "moderate snowfall"             "monthly snowfall"             
+##  [81] "mountain snows"                "near record snow"             
+##  [83] "patchy ice"                    "prolong cold"                 
+##  [85] "prolong cold/snow"             "record  cold"                 
+##  [87] "record cold"                   "record cold/frost"            
+##  [89] "record cool"                   "record may snow"              
+##  [91] "record snow"                   "record snow/cold"             
+##  [93] "record snowfall"               "record winter snow"           
+##  [95] "severe cold"                   "sleet/snow"                   
+##  [97] "snow"                          "snow accumulation"            
+##  [99] "snow advisory"                 "snow and cold"                
+## [101] "snow and heavy snow"           "snow and ice"                 
+## [103] "snow and sleet"                "snow drought"                 
+## [105] "snow showers"                  "snow sleet"                   
+## [107] "snow squall"                   "snow squalls"                 
+## [109] "snow/ bitter cold"             "snow/ ice"                    
+## [111] "snow/blowing snow"             "snow/cold"                    
+## [113] "snow/heavy snow"               "snow/ice"                     
+## [115] "snow/sleet"                    "snow\\cold"                   
+## [117] "snowfall record"               "thundersnow"                  
+## [119] "thundersnow shower"            "unusually cold"               
+## [121] "unusually late snow"           "wet snow"                     
+## [123] "winter mix"                    "winter weather"               
+## [125] "winter weather mix"            "winter weather/mix"           
+## [127] "wintery mix"                   "wintry mix"
 ```
 
 ```r
-reducedData$evCat[grepl("warm|hot|heat|fire|hypertherm", reducedData$EVTYPE, 
+
+reducedData$evCat[grepl("warm|hot|heat|fire|hypertherm|high temp", reducedData$EVTYPE, 
     ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Heat"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Heat"]))
 ```
 
 ```
-##  [1] "abnormal warmth"           "brush fire"               
-##  [3] "brush fires"               "drought/excessive heat"   
-##  [5] "dry hot weather"           "excessive heat"           
-##  [7] "excessive heat/drought"    "extreme heat"             
-##  [9] "forest fires"              "grass fires"              
-## [11] "heat"                      "heat drought"             
-## [13] "heat wave"                 "heat wave drought"        
-## [15] "heat waves"                "heat/drought"             
-## [17] "heatburst"                 "hot and dry"              
-## [19] "hot pattern"               "hot spell"                
-## [21] "hot weather"               "hot/dry pattern"          
-## [23] "hyperthermia/exposure"     "prolong warmth"           
-## [25] "record heat"               "record heat wave"         
-## [27] "record warm"               "record warm temps."       
-## [29] "record warmth"             "record/excessive heat"    
-## [31] "red flag fire wx"          "unseasonably hot"         
-## [33] "unseasonably warm"         "unseasonably warm & wet"  
-## [35] "unseasonably warm and dry" "unseasonably warm year"   
-## [37] "unseasonably warm/wet"     "unusual warmth"           
-## [39] "unusual/record warmth"     "unusually warm"           
-## [41] "very warm"                 "warm dry conditions"      
-## [43] "warm weather"              "wild fires"               
-## [45] "wild/forest fire"          "wild/forest fires"        
-## [47] "wildfire"                  "wildfires"
+##  [1] "abnormal warmth"          "brush fire"              
+##  [3] "brush fires"              "drought/excessive heat"  
+##  [5] "dry hot weather"          "excessive heat"          
+##  [7] "excessive heat/drought"   "extreme heat"            
+##  [9] "forest fires"             "grass fires"             
+## [11] "heat"                     "heat drought"            
+## [13] "heat wave"                "heat wave drought"       
+## [15] "heat waves"               "heat/drought"            
+## [17] "heatburst"                "high temperature record" 
+## [19] "hot and dry"              "hot pattern"             
+## [21] "hot spell"                "hot weather"             
+## [23] "hot/dry pattern"          "hyperthermia/exposure"   
+## [25] "lightning fire"           "prolong warmth"          
+## [27] "record heat"              "record heat wave"        
+## [29] "record high temperature"  "record high temperatures"
+## [31] "record warm"              "record warm temps."      
+## [33] "record warmth"            "record/excessive heat"   
+## [35] "red flag fire wx"         "unusual warmth"          
+## [37] "unusual/record warmth"    "unusually warm"          
+## [39] "very warm"                "warm dry conditions"     
+## [41] "warm weather"             "wild fires"              
+## [43] "wild/forest fire"         "wild/forest fires"       
+## [45] "wildfire"                 "wildfires"
 ```
 
 ```r
-reducedData$evCat[grepl("dry|drought", reducedData$EVTYPE, ignore.case = TRUE) & 
+
+reducedData$evCat[grepl("lightn|lighti|lign", reducedData$EVTYPE, ignore.case = TRUE) & 
+    is.na(reducedData$evCat)] <- "Lightning"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Lightning"]))
+```
+
+```
+## [1] " lightning"         "lighting"           "lightning"         
+## [4] "lightning  wauseon" "lightning damage"   "lightning injury"  
+## [7] "lightning."         "ligntning"
+```
+
+```r
+
+
+reducedData$evCat[grepl("dry|drought|driest", reducedData$EVTYPE, ignore.case = TRUE) & 
     is.na(reducedData$evCat)] <- "Dry"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Dry"]))
 ```
 
 ```
-##  [1] "abnormally dry"       "drought"              "dry"                 
-##  [4] "dry conditions"       "dry microburst"       "dry microburst 50"   
-##  [7] "dry microburst 53"    "dry microburst 58"    "dry microburst 61"   
-## [10] "dry microburst 84"    "dry pattern"          "dry spell"           
-## [13] "dry weather"          "dryness"              "excessively dry"     
-## [16] "mild and dry pattern" "mild/dry pattern"     "record dry month"    
-## [19] "record dryness"       "unseasonably dry"     "very dry"
+##  [1] "abnormally dry"       "driest month"         "drought"             
+##  [4] "dry"                  "dry conditions"       "dry microburst"      
+##  [7] "dry microburst 50"    "dry microburst 53"    "dry microburst 58"   
+## [10] "dry microburst 61"    "dry microburst 84"    "dry pattern"         
+## [13] "dry spell"            "dry weather"          "dryness"             
+## [16] "excessively dry"      "mild and dry pattern" "mild/dry pattern"    
+## [19] "record dry month"     "record dryness"       "very dry"
 ```
 
 ```r
+
 reducedData$evCat[is.na(reducedData$evCat)] <- "Other"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Other"]))
 ```
 
 ```
-##   [1] "   high surf advisory"      "?"                         
-##   [3] "abnormally wet"             "apache county"             
-##   [5] "avalance"                   "avalanche"                 
-##   [7] "beach erosin"               "beach erosion"             
-##   [9] "below normal precipitation" "blowing dust"              
-##  [11] "coastal erosion"            "coastal surge"             
-##  [13] "cool and wet"               "cool spell"                
-##  [15] "dam break"                  "dam failure"               
-##  [17] "dense fog"                  "dense smoke"               
-##  [19] "downburst"                  "driest month"              
-##  [21] "drowning"                   "excessive"                 
-##  [23] "excessive precipitation"    "excessive wetness"         
-##  [25] "extremely wet"              "flash floooding"           
-##  [27] "fog"                        "glaze"                     
-##  [29] "hazardous surf"             "heavy mix"                 
-##  [31] "heavy precipatation"        "heavy precipitation"       
-##  [33] "heavy seas"                 "heavy shower"              
-##  [35] "heavy showers"              "heavy surf"                
-##  [37] "heavy surf/high surf"       "heavy swells"              
-##  [39] "high"                       "high  swells"              
-##  [41] "high seas"                  "high surf"                 
-##  [43] "high surf advisories"       "high surf advisory"        
-##  [45] "high swells"                "high temperature record"   
-##  [47] "high waves"                 "landslide"                 
-##  [49] "landslides"                 "landslump"                 
-##  [51] "large wall cloud"           "lighting"                  
-##  [53] "ligntning"                  "low temperature"           
-##  [55] "low temperature record"     "marine accident"           
-##  [57] "marine mishap"              "microburst"                
-##  [59] "mild pattern"               "mixed precip"              
-##  [61] "mixed precipitation"        "monthly precipitation"     
-##  [63] "monthly temperature"        "mud slide"                 
-##  [65] "mud slides"                 "mud/rock slide"            
-##  [67] "mudslide"                   "mudslide/landslide"        
-##  [69] "mudslides"                  "no severe weather"         
-##  [71] "none"                       "normal precipitation"      
-##  [73] "northern lights"            "other"                     
-##  [75] "patchy dense fog"           "rapidly rising water"      
-##  [77] "record cool"                "record high"               
-##  [79] "record high temperature"    "record high temperatures"  
-##  [81] "record low"                 "record precipitation"      
-##  [83] "record temperature"         "record temperatures"       
-##  [85] "red flag criteria"          "remnants of floyd"         
-##  [87] "rock slide"                 "rogue wave"                
-##  [89] "rotating wall cloud"        "rough seas"                
-##  [91] "rough surf"                 "saharan dust"              
-##  [93] "seiche"                     "severe turbulence"         
-##  [95] "sleet"                      "small stream"              
-##  [97] "small stream and"           "smoke"                     
-##  [99] "southeast"                  "temperature record"        
-## [101] "torndao"                    "tropical depression"       
-## [103] "tstm"                       "tstmw"                     
-## [105] "typhoon"                    "unseasonably cool"         
-## [107] "unseasonably cool & wet"    "unseasonably wet"          
-## [109] "unseasonal low temp"        "urban and small"           
-## [111] "urban and small stream"     "urban small"               
-## [113] "urban/small"                "urban/small stream"        
-## [115] "urban/small strm fldg"      "vog"                       
-## [117] "volcanic ash"               "volcanic ash plume"        
-## [119] "volcanic ashfall"           "volcanic eruption"         
-## [121] "wall cloud"                 "wet micoburst"             
-## [123] "wet microburst"             "wet month"                 
-## [125] "wet weather"                "wet year"
+##  [1] "?"                          "abnormally wet"            
+##  [3] "apache county"              "avalance"                  
+##  [5] "avalanche"                  "below normal precipitation"
+##  [7] "blowing dust"               "dam break"                 
+##  [9] "dam failure"                "dense fog"                 
+## [11] "dense smoke"                "downburst"                 
+## [13] "drowning"                   "excessive"                 
+## [15] "excessive precipitation"    "excessive wetness"         
+## [17] "extremely wet"              "fog"                       
+## [19] "glaze"                      "heavy mix"                 
+## [21] "heavy precipatation"        "heavy precipitation"       
+## [23] "heavy shower"               "heavy showers"             
+## [25] "heavy swells"               "high"                      
+## [27] "high  swells"               "high swells"               
+## [29] "high waves"                 "landslide"                 
+## [31] "landslides"                 "landslump"                 
+## [33] "large wall cloud"           "low temperature"           
+## [35] "low temperature record"     "microburst"                
+## [37] "mild pattern"               "mixed precip"              
+## [39] "mixed precipitation"        "monthly precipitation"     
+## [41] "monthly temperature"        "mud slide"                 
+## [43] "mud slides"                 "mud/rock slide"            
+## [45] "mudslide"                   "mudslide/landslide"        
+## [47] "mudslides"                  "no severe weather"         
+## [49] "none"                       "normal precipitation"      
+## [51] "northern lights"            "other"                     
+## [53] "patchy dense fog"           "rapidly rising water"      
+## [55] "record high"                "record low"                
+## [57] "record precipitation"       "record temperature"        
+## [59] "record temperatures"        "red flag criteria"         
+## [61] "remnants of floyd"          "rock slide"                
+## [63] "rogue wave"                 "rotating wall cloud"       
+## [65] "saharan dust"               "seiche"                    
+## [67] "severe turbulence"          "sleet"                     
+## [69] "small stream"               "small stream and"          
+## [71] "smoke"                      "southeast"                 
+## [73] "temperature record"         "tropical depression"       
+## [75] "tstm"                       "tstmw"                     
+## [77] "typhoon"                    "urban and small"           
+## [79] "urban and small stream"     "urban small"               
+## [81] "urban/small"                "urban/small stream"        
+## [83] "urban/small strm fldg"      "vog"                       
+## [85] "volcanic ash"               "volcanic ash plume"        
+## [87] "volcanic ashfall"           "volcanic eruption"         
+## [89] "wall cloud"                 "wet micoburst"             
+## [91] "wet microburst"             "wet month"                 
+## [93] "wet weather"                "wet year"
 ```
 
 ```r
@@ -1106,7 +1130,24 @@ In order to be analysed further, the data is aggregated by event category, deliv
 aggregatedData <- aggregate(with(reducedData, list(count, FATALITIES, INJURIES, 
     propDam, cropDam)), with(reducedData, list(evCat)), sum)
 colnames(aggregatedData) <- colnames(reducedData)[c(9, 8, 3:6)]
-View(aggregatedData)
+aggregatedData
+```
+
+```
+##        evCat  count FATALITIES INJURIES   propDam   cropDam
+## 1   Blizzard  16216        407     4151 1.136e+10 5.167e+09
+## 2       Cold  28435        460     2226 1.196e+09 3.531e+09
+## 3        Dry   2716          3       32 1.053e+09 1.397e+10
+## 4      Flood  86092       1555     8681 1.676e+11 1.228e+10
+## 5       Hail 289270         15     1371 1.573e+10 3.047e+09
+## 6       Heat   7087       3229    10834 8.522e+09 1.308e+09
+## 7  Hurricane    288        135     1328 8.476e+10 5.515e+09
+## 8  Lightning  15763        817     5231 9.287e+08 1.209e+07
+## 9     Marine   2436        834      941 2.571e+08 3.017e+07
+## 10     Other   3461        371     1555 9.624e+08 1.639e+08
+## 11      Rain  12215        113      305 3.263e+09 8.065e+08
+## 12   Tornado  71699       5666    91482 5.860e+10 4.175e+08
+## 13      Wind 366543       1540    12391 7.312e+10 2.859e+09
 ```
 
 ## Results

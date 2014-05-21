@@ -5,7 +5,7 @@ Storms and other severe weather events can be an economical threat by causing ma
 
 Exploring the U.S. National Oceanic and Atmospheric Administration's (NOAA) storm database, this report shows which types of weather events were the most harmful in the time period between 1950 and 2013 both economically and for public health.
 
-Therefore, the data is grouped into 12 categories of events, for which property damage, crop damage, fatalities and injuries during that time span are compared. An analysis of the data shows that tornadoes and comparable events have the most severe impact with respect to population health, whereas floods and wind in general have the strongest economic impact.
+Therefore, the data is grouped into 13 categories of events, for which property damage, crop damage, fatalities and injuries during that time span are compared. An analysis of the data shows that tornadoes and comparable events have the most severe impact with respect to population health, whereas floods, hurricanes and wind events in general have the strongest economic impact.
 ## Data processing
 The input data is read directly from the bzipped data file as provided by NOAA.
 ```{r readData, cache = TRUE}
@@ -68,16 +68,24 @@ reducedData <- reducedData[!grepl("summa", reducedData$EVTYPE, ignore.case=TRUE)
 ```
 The remaining events are assigned to broader categories
 
+mainly **Wind** related events
 * Tornadoes, also containing gustnados, funnel clouds, water spouts and dust devils
+* Hurricanes
 * Blizzards, also containing winter storms and ice storms
-* Cold related events such as snow, ice, general winter events, frost, etc.
-* Hail
+* Other winds and storms  
+
+mainly **Water** related events
 * Rain
-* Wind, including storms and hurricanes
+* Hail
 * Floods
-* Marine, containing rip currents, tides and tsunamis
+* Marine, containing rip currents, tides and tsunamis  
+
+mainly **Temperature** related events
+* Cold related events such as snow, ice, general winter events, frost, etc.
+* Heat related events, including Fires  
+
+**other** events
 * Lightning
-* Heat related events, including Fires
 * Dryness
 * Other events  
 
@@ -85,27 +93,42 @@ This categorization is constructed as disjunct, i.e. any event is assigned to ex
 ```{r eventCategories}
 reducedData$evCat <- NA
 reducedData$evCat[grepl("torna|tornda|gustna|funnel|spout|dust dev", reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Tornado"
+
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Tornado"]))
+reducedData$evCat[grepl("hurr", reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Hurricane"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Hurricane"]))
+
 reducedData$evCat[grepl("blitz|bliz|winter sto|ice sto",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Blizzard"
+
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Blizzard"]))
-reducedData$evCat[grepl("snow|ice|icy|freez|wint|cold|cool|frost|chill|hypotherm",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Cold"
-levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Cold"]))
-reducedData$evCat[grepl("hail",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Hail"
-levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Hail"]))
+reducedData$evCat[grepl("wind|wnd|storm",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Wind"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Wind"]))
+
 reducedData$evCat[grepl("rain",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Rain"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Rain"]))
-reducedData$evCat[grepl("wind|wnd|storm|hurr",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Wind"
-levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Wind"]))
+
+reducedData$evCat[grepl("hail",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Hail"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Hail"]))
+
 reducedData$evCat[grepl("flood|stream fld|high wat|floood",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Flood"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Flood"]))
+
 reducedData$evCat[grepl("marin|tide|rip cur|tsunami|surf|sea|beach|coast",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Marine"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Marine"]))
-reducedData$evCat[grepl("lightn|lighti|lign",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Lightning"
-levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Lightning"]))
+
+reducedData$evCat[grepl("snow|ice|icy|freez|wint|cold|cool|frost|chill|hypotherm",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Cold"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Cold"]))
+
 reducedData$evCat[grepl("warm|hot|heat|fire|hypertherm|high temp",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Heat"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Heat"]))
+
+reducedData$evCat[grepl("lightn|lighti|lign",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Lightning"
+levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Lightning"]))
+
+
 reducedData$evCat[grepl("dry|drought|driest",reducedData$EVTYPE, ignore.case=TRUE) & is.na(reducedData$evCat)] <- "Dry"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Dry"]))
+
 reducedData$evCat[is.na(reducedData$evCat)] <- "Other"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat=="Other"]))
 head(reducedData)
@@ -119,7 +142,7 @@ aggregatedData
 ## Results
 From the table above and the following graphs, it can be seen that
 * the vast majority of recorded events are in the categories for wind (~360k) and hail (~290k) categories
-* the most devastating categories with respect to property damages are floods (~167 bn USD) and wind (~157 bn USD)
+* the most devastating categories with respect to property damages are floods (~167 bn USD), hurricanes (~85 bn USD) and general wind events (~73 bn USD)
 * the most devastating categories with respect to crop damages are dryness (~14 bn) and floods (~12 bn)
 * the most devastating category with respect to both fatalities and injuries is tornadoes (~5600 dead, ~90000 injured)
 ```{r plotResults}
