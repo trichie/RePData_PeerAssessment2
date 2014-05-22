@@ -5,8 +5,9 @@ Storms and other severe weather events can be an economical threat by causing ma
 
 Exploring the U.S. National Oceanic and Atmospheric Administration's (NOAA) storm database, this report shows which types of weather events were the most harmful in the time period between 1950 and 2013 both economically and for public health.
 
-Therefore, the data is grouped into 12 categories of events, for which property damage, crop damage, fatalities and injuries during that time span are compared. An analysis of the data shows that tornadoes and comparable events have the most severe impact with respect to population health, whereas floods and wind in general have the strongest economic impact.
+Therefore, the data is grouped into 13 categories of events, for which property damage, crop damage, fatalities and injuries during that time span are compared. An analysis of the data shows that tornadoes and comparable events have the most severe impact with respect to population health, whereas floods, hurricanes and wind events in general have the strongest economic impact. Looking at damages to health and property per single event, the biggest impact is clearly caused by (rare) hurricanes.
 ## Data processing
+### Reading Input
 The input data is read directly from the bzipped data file as provided by NOAA.
 
 ```r
@@ -15,22 +16,29 @@ data <- read.csv(bzfile("repdata-data-StormData.csv.bz2"), header = TRUE)
 
 For computational and memory reasons, only those columns that are required for the analysis are extracted:
 * EVTYPE: Type of event
-* BGN_DATE: Date when event began, dropped after YEAR is determined
+* BGN_DATE: Date when event began, dropped after YEAR is derived from it
 * STATE: State where event took place
 * FATALITIES: Number of fatalities caused by events
 * INJURIES: Number of injuries caused by events
 * PROPDMG and PROPDMGEXP: Property damage caused by events, dropped after propDam is calculated from these
-* CROPDMG and CROPDMGEXP: Crop damage caused by events, dropped after cropDam is calculated from these
-Additional Columns are created:
-* YEAR: year of events, deducted from BGN_DATE
-* DAMAGE: Damage caused by events, deducted from PROPDMG and PROPDMGEXP
+* CROPDMG and CROPDMGEXP: Crop damage caused by events, dropped after cropDam is calculated from these    
+
+### Reducing columns for computational reasons
 
 ```r
 reducedData <- data[, c("EVTYPE", "BGN_DATE", "STATE", "FATALITIES", "INJURIES", 
     "PROPDMG", "PROPDMGEXP", "CROPDMG", "CROPDMGEXP")]
 ```
 
-Both PROPDMGEXP and CROPDMGEXP are decoded into the following factors which are then multiplied by PROPDMG and CROPDMG:
+### Creation of additional columns
+Additional Columns are created:
+* year: year of events, deducted from BGN_DATE
+* propDam: Damage caused by events, deducted from PROPDMG and PROPDMGEXP
+* cropDam: Damage to crop caused by events, deducted from CROPDMG and CROPDMGEXP
+* count
+* evCat: Category of events, derived from EVTYPE
+
+Both PROPDMGEXP and CROPDMGEXP are decoded into the following factors which are then multiplied by PROPDMG and CROPDMG in order to obtain fields propDam and cropDam:
 * Letters are transformed to lowercase and interpreted as factors: b(illions = 10^9), m(illions = 10^6), k(ilos = 10^3) and h(undreds = 10^2)
 * Numbers are used directly as factors, e.g. 5 = 10^5
 * Other symbols are interpreted as factor 10^0 = 1
@@ -84,7 +92,8 @@ reducedData$BGN_DATE <- NULL
 reducedData$count <- 1
 ```
 
-After transforming all event types to lowercase, there are roughly 900 distinct types of events listed
+### Categorizing events and dropping those that are only summary events
+After transforming all event types in column EVTYPE to lowercase, there are roughly 900 distinct types of events listed
 
 ```r
 reducedData$EVTYPE <- as.factor(tolower(reducedData$EVTYPE))
@@ -550,36 +559,38 @@ reducedData <- reducedData[!grepl("summa", reducedData$EVTYPE, ignore.case = TRU
     ]
 ```
 
-The remaining events are assigned to broader categories
+The remaining events are assigned to overall 13 broader categories
 
-mainly **Wind** related events
+4 categories of mainly **Wind** related events
 * Tornadoes, also containing gustnados, funnel clouds, water spouts and dust devils
 * Hurricanes
 * Blizzards, also containing winter storms and ice storms
 * Other winds and storms  
 
-mainly **Water** related events
+4 categories of mainly **Water** related events
 * Rain
 * Hail
 * Floods
 * Marine, containing rip currents, tides and tsunamis  
 
-mainly **Temperature** related events
+2 categories of mainly **Temperature** related events
 * Cold related events such as snow, ice, general winter events, frost, etc.
 * Heat related events, including Fires  
 
-**other** events
+3 categories of **other** events
 * Lightning
 * Dryness
 * Other events  
 
-This categorization is constructed as disjunct, i.e. any event is assigned to exactly one of these categories in the above order. The assignment is performed by searching key strings in the EVTYPE variable. After this grouping, only a small proportion of the original data could not be assigned to any of the categories, which means that it was by definition assigned to category Other. The following tables show which event was assigned to which category, also covering most of the misspelled events.
+This categorization is constructed as disjunct, i.e. any event is assigned to exactly one of these categories in the above order. The assignment is performed by searching key strings in the EVTYPE variable. After this grouping, only a small proportion of the original data could not be assigned to any of the categories, which means that it was by definition assigned to category Other. The following tables show which event was assigned to which category, also covering most of the misspelled events.  
+
+### Overview of assignment of single events to categories
+List of events assigned to Tornado category:
 
 ```r
 reducedData$evCat <- NA
 reducedData$evCat[grepl("torna|tornda|gustna|funnel|spout|dust dev", reducedData$EVTYPE, 
     ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Tornado"
-
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Tornado"]))
 ```
 
@@ -607,6 +618,8 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Tornado"]))
 ## [41] "wayterspout"
 ```
 
+List of events assigned to Hurricane category:
+
 ```r
 reducedData$evCat[grepl("hurr", reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Hurricane"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Hurricane"]))
@@ -620,11 +633,12 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Hurricane"]))
 ##  [9] "hurricane opal/high winds"  "hurricane/typhoon"
 ```
 
+List of events assigned to Blizzard Category:
+
 ```r
 
 reducedData$evCat[grepl("blitz|bliz|winter sto|ice sto", reducedData$EVTYPE, 
     ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Blizzard"
-
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Blizzard"]))
 ```
 
@@ -646,6 +660,8 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Blizzard"]))
 ## [29] "winter storm/high wind"         "winter storm/high winds"       
 ## [31] "winter storms"
 ```
+
+List of events assigned to Wind category:
 
 ```r
 reducedData$evCat[grepl("wind|wnd|storm", reducedData$EVTYPE, ignore.case = TRUE) & 
@@ -776,8 +792,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Wind"]))
 ## [239] "winds"                          "wnd"
 ```
 
-```r
+List of events assigned to Rain category:
 
+```r
 reducedData$evCat[grepl("rain", reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Rain"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Rain"]))
 ```
@@ -814,8 +831,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Rain"]))
 ## [57] "unseasonal rain"
 ```
 
-```r
+List of events assigned to Hail category:
 
+```r
 reducedData$evCat[grepl("hail", reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Hail"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Hail"]))
 ```
@@ -833,8 +851,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Hail"]))
 ## [28] "non severe hail"  "small hail"
 ```
 
-```r
+List of events assigned to Flood category:
 
+```r
 reducedData$evCat[grepl("flood|stream fld|high wat|floood", reducedData$EVTYPE, 
     ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Flood"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Flood"]))
@@ -884,8 +903,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Flood"]))
 ## [81] "urban/sml stream fldg"          "urban/street flooding"
 ```
 
-```r
+List of events assigned to Marine category:
 
+```r
 reducedData$evCat[grepl("marin|tide|rip cur|tsunami|surf|sea|beach|coast", reducedData$EVTYPE, 
     ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Marine"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Marine"]))
@@ -916,8 +936,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Marine"]))
 ## [43] "unseasonably wet"          "unseasonal low temp"
 ```
 
-```r
+List of events assigned to Cold category:
 
+```r
 reducedData$evCat[grepl("snow|ice|icy|freez|wint|cold|cool|frost|chill|hypotherm", 
     reducedData$EVTYPE, ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Cold"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Cold"]))
@@ -990,8 +1011,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Cold"]))
 ## [127] "wintery mix"                   "wintry mix"
 ```
 
-```r
+List of events assigned to Heat category:
 
+```r
 reducedData$evCat[grepl("warm|hot|heat|fire|hypertherm|high temp", reducedData$EVTYPE, 
     ignore.case = TRUE) & is.na(reducedData$evCat)] <- "Heat"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Heat"]))
@@ -1023,8 +1045,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Heat"]))
 ## [45] "wildfire"                 "wildfires"
 ```
 
-```r
+List of events assigned to Lightning category:
 
+```r
 reducedData$evCat[grepl("lightn|lighti|lign", reducedData$EVTYPE, ignore.case = TRUE) & 
     is.na(reducedData$evCat)] <- "Lightning"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Lightning"]))
@@ -1036,9 +1059,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Lightning"]))
 ## [7] "lightning."         "ligntning"
 ```
 
+List of events assigned to Dryness category:
+
 ```r
-
-
 reducedData$evCat[grepl("dry|drought|driest", reducedData$EVTYPE, ignore.case = TRUE) & 
     is.na(reducedData$evCat)] <- "Dry"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Dry"]))
@@ -1054,8 +1077,9 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Dry"]))
 ## [19] "record dry month"     "record dryness"       "very dry"
 ```
 
-```r
+List of events assigned to Other category:
 
+```r
 reducedData$evCat[is.na(reducedData$evCat)] <- "Other"
 levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Other"]))
 ```
@@ -1110,6 +1134,8 @@ levels(droplevels(reducedData$EVTYPE[reducedData$evCat == "Other"]))
 ## [93] "wet weather"                "wet year"
 ```
 
+After this assignment, the data looks as follows:
+
 ```r
 head(reducedData)
 ```
@@ -1124,38 +1150,65 @@ head(reducedData)
 ## 6 tornado    AL          0        6    2500       0 1951     1 Tornado
 ```
 
-In order to be analysed further, the data is aggregated by event category, delivering the subsequent table:
+### Further aggregation of data by event category
+In order to be analysed further, the data is aggregated by event category and impacts per event are calculated, delivering the subsequent table:
 
 ```r
 aggregatedData <- aggregate(with(reducedData, list(count, FATALITIES, INJURIES, 
     propDam, cropDam)), with(reducedData, list(evCat)), sum)
 colnames(aggregatedData) <- colnames(reducedData)[c(9, 8, 3:6)]
+aggregatedData$fatPerEv <- aggregatedData$FATALITIES/aggregatedData$count
+aggregatedData$injPerEv <- aggregatedData$INJURIES/aggregatedData$count
+aggregatedData$propDamPerEv <- aggregatedData$propDam/aggregatedData$count
+aggregatedData$cropDamPerEv <- aggregatedData$cropDam/aggregatedData$count
+```
+
+## Results
+### Table overview
+
+```r
 aggregatedData
 ```
 
 ```
-##        evCat  count FATALITIES INJURIES   propDam   cropDam
-## 1   Blizzard  16216        407     4151 1.136e+10 5.167e+09
-## 2       Cold  28435        460     2226 1.196e+09 3.531e+09
-## 3        Dry   2716          3       32 1.053e+09 1.397e+10
-## 4      Flood  86092       1555     8681 1.676e+11 1.228e+10
-## 5       Hail 289270         15     1371 1.573e+10 3.047e+09
-## 6       Heat   7087       3229    10834 8.522e+09 1.308e+09
-## 7  Hurricane    288        135     1328 8.476e+10 5.515e+09
-## 8  Lightning  15763        817     5231 9.287e+08 1.209e+07
-## 9     Marine   2436        834      941 2.571e+08 3.017e+07
-## 10     Other   3461        371     1555 9.624e+08 1.639e+08
-## 11      Rain  12215        113      305 3.263e+09 8.065e+08
-## 12   Tornado  71699       5666    91482 5.860e+10 4.175e+08
-## 13      Wind 366543       1540    12391 7.312e+10 2.859e+09
+##        evCat  count FATALITIES INJURIES   propDam   cropDam  fatPerEv
+## 1   Blizzard  16216        407     4151 1.136e+10 5.167e+09 2.510e-02
+## 2       Cold  28435        460     2226 1.196e+09 3.531e+09 1.618e-02
+## 3        Dry   2716          3       32 1.053e+09 1.397e+10 1.105e-03
+## 4      Flood  86092       1555     8681 1.676e+11 1.228e+10 1.806e-02
+## 5       Hail 289270         15     1371 1.573e+10 3.047e+09 5.185e-05
+## 6       Heat   7087       3229    10834 8.522e+09 1.308e+09 4.556e-01
+## 7  Hurricane    288        135     1328 8.476e+10 5.515e+09 4.688e-01
+## 8  Lightning  15763        817     5231 9.287e+08 1.209e+07 5.183e-02
+## 9     Marine   2436        834      941 2.571e+08 3.017e+07 3.424e-01
+## 10     Other   3461        371     1555 9.624e+08 1.639e+08 1.072e-01
+## 11      Rain  12215        113      305 3.263e+09 8.065e+08 9.251e-03
+## 12   Tornado  71699       5666    91482 5.860e+10 4.175e+08 7.902e-02
+## 13      Wind 366543       1540    12391 7.312e+10 2.859e+09 4.201e-03
+##    injPerEv propDamPerEv cropDamPerEv
+## 1   0.25598       700570    3.186e+05
+## 2   0.07828        42074    1.242e+05
+## 3   0.01178       387643    5.145e+06
+## 4   0.10083      1946360    1.426e+05
+## 5   0.00474        54389    1.053e+04
+## 6   1.52871      1202477    1.845e+05
+## 7   4.61111    294292292    1.915e+07
+## 8   0.33185        58916    7.671e+02
+## 9   0.38629       105524    1.239e+04
+## 10  0.44929       278077    4.735e+04
+## 11  0.02497       267104    6.603e+04
+## 12  1.27592       817357    5.822e+03
+## 13  0.03381       199478    7.800e+03
 ```
 
-## Results
 From the table above and the following graphs, it can be seen that
-* the vast majority of recorded events are in the categories for wind (~360k) and hail (~290k) categories
-* the most devastating categories with respect to property damages are floods (~167 bn USD) and wind (~157 bn USD)
-* the most devastating categories with respect to crop damages are dryness (~14 bn) and floods (~12 bn)
-* the most devastating category with respect to both fatalities and injuries is tornadoes (~5600 dead, ~90000 injured)
+- the vast majority of recorded events are in the categories for wind (~360k) and hail (~290k) categories
+- the most devastating categories with respect to *overall* property damages are floods (~167 bn USD), hurricanes (~85 bn USD) and general wind events (~73 bn USD)
+- the most devastating categories with respect to *overall*crop damages are dryness (~14 bn) and floods (~12 bn)
+- the most devastating category with respect to both *overall* fatalities and injuries is tornadoes (~5600 dead, ~90000 injured)
+- the most devastating category *per single event* with respect to all 4 dimensions  is hurricanes (~295 mn prop. damage, ~19 mn crop damage, ~0.5 fatalities and ~5 injuries per event)  
+
+### Figure 1: Overall number of events by category
 
 ```r
 library(ggplot2)
@@ -1177,10 +1230,11 @@ plotEvt <- ggplot(aggregatedData, aes(x = evCat, y = count, fill = evCat)) +
 plotEvt
 ```
 
-![plot of chunk plotResults](figure/plotResults1.png) 
+![plot of chunk plotResultsA](figure/plotResultsA.png) 
+
+### Figure 2: Overall damages and impacts on health by category
 
 ```r
-
 plotPropDam <- ggplot(aggregatedData, aes(x = evCat, y = propDam, fill = evCat)) + 
     geom_bar(stat = "identity") + theme_bw() + guides(fill = FALSE) + labs(title = "Property damage in bn USD", 
     x = "Event category", y = "") + theme(axis.text.x = element_text(angle = 0)) + 
@@ -1205,14 +1259,37 @@ plotInj <- ggplot(aggregatedData, aes(x = evCat, y = INJURIES, fill = evCat)) +
 grid.arrange(plotPropDam, plotCropDam, plotFat, plotInj, ncol = 2, nrow = 2)
 ```
 
-![plot of chunk plotResults](figure/plotResults2.png) 
+![plot of chunk plotResultsB](figure/plotResultsB.png) 
+
+### Figure 3: Damages and impacts on health per single event by category:
+
+```r
+plotPropDamEvt <- ggplot(aggregatedData, aes(x = evCat, y = propDamPerEv, fill = evCat)) + 
+    geom_bar(stat = "identity") + theme_bw() + guides(fill = FALSE) + labs(title = "Prop. dmg./event in mn USD", 
+    x = "Event category", y = "") + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip() + scale_y_continuous(labels = function(x) {
+    x/10^6
+})
+plotCropDamEvt <- ggplot(aggregatedData, aes(x = evCat, y = cropDamPerEv, fill = evCat)) + 
+    geom_bar(stat = "identity") + theme_bw() + guides(fill = FALSE) + labs(title = "Crop dmg./event in mn USD", 
+    x = "Event category", y = "") + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip() + scale_y_continuous(labels = function(x) {
+    x/10^6
+})
+
+plotFatEvt <- ggplot(aggregatedData, aes(x = evCat, y = fatPerEv, fill = evCat)) + 
+    geom_bar(stat = "identity") + theme_bw() + guides(fill = FALSE) + labs(title = "Fatalities/event", 
+    x = "Event category", y = "") + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip()
+plotInjEvt <- ggplot(aggregatedData, aes(x = evCat, y = injPerEv, fill = evCat)) + 
+    geom_bar(stat = "identity") + theme_bw() + guides(fill = FALSE) + labs(title = "Injuries/event", 
+    x = "Event category", y = "") + theme(axis.text.x = element_text(angle = 0)) + 
+    coord_flip()
+grid.arrange(plotPropDamEvt, plotCropDamEvt, plotFatEvt, plotInjEvt, ncol = 2, 
+    nrow = 2)
+```
+
+![plot of chunk plotResultsC](figure/plotResultsC.png) 
 
 ## Used external resources
-* Storm data used for analysis: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2
-
-
-
-
-
-
-
+* Storm data from the U.S. National Oceanic and Atmospheric Administration's Database used for this analysis: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2
